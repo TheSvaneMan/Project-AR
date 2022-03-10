@@ -2,11 +2,12 @@
 Ionic-Cross-Platform-Unity-Rep
 
 // ----------------- Name: undecided ----------------- //
-What is Project-AR?
+- // What is Project-AR? 
 
 - Project AR aims to be a cross platform, augmented reality art sharing application used by anyone and everyone!
 - Show off your talent and creativity and place your mark on the physical world! 
 - Share your creations to others by pinning your location on the world and have others see it using Augmented Reality. 
+- Developed using Ionic Native React and Unity Software
 
 // -------------- Future Features to be announced ----- //
 
