@@ -1,0 +1,7 @@
+{
+  "name": "ProjectAR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
