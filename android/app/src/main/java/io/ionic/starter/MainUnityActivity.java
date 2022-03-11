@@ -2,14 +2,15 @@ package io.ionic.starter;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Process;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.unity3d.player.UnityPlayerActivity;
 
-public class MainUnityActivity extends UnityPlayerActivity {
+public class MainUnityActivity extends UnityPlayerActivity{
+    private static MainUnityActivity instance;
+    String newObjectName = "Java Default name";
     // Setup activity layout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +18,7 @@ public class MainUnityActivity extends UnityPlayerActivity {
         addControlsToUnityFrame();
         Intent intent = getIntent();
         handleIntent(intent);
+        instance = this;
     }
 
     @Override
@@ -33,6 +35,15 @@ public class MainUnityActivity extends UnityPlayerActivity {
             if(mUnityPlayer != null) {
                 finish();
             }
+    }
+
+    // ------------- Custom Code ----------------------- //
+    public static MainUnityActivity getInstance() {
+        return instance;
+    }
+
+    void changeObjectName(String nameFromIonic){
+        newObjectName = nameFromIonic;
     }
 
     protected void showMainActivity(String setToColor) {
@@ -70,6 +81,32 @@ public class MainUnityActivity extends UnityPlayerActivity {
             myButton.setOnClickListener( new View.OnClickListener() {
                 public void onClick(View v) {
                     mUnityPlayer.UnitySendMessage("Cube", "ChangeColor", "yellow");
+                }
+            });
+            layout.addView(myButton, 300, 200);
+        }
+
+        {
+            Button myButton = new Button(this);
+            myButton.setText("Change Object Name");
+            myButton.setX(200);
+            myButton.setY(800);
+            myButton.setOnClickListener( new View.OnClickListener() {
+                public void onClick(View v) {
+                    mUnityPlayer.UnitySendMessage("AR Session Origin", "ionicChangeObjectName", newObjectName);
+                }
+            });
+            layout.addView(myButton, 300, 200);
+        }
+
+        {
+            Button myButton = new Button(this);
+            myButton.setText("Change Object to Custom Object");
+            myButton.setX(200);
+            myButton.setY(1000);
+            myButton.setOnClickListener( new View.OnClickListener() {
+                public void onClick(View v) {
+                    mUnityPlayer.UnitySendMessage("AR Session Origin", "ionicPlaceNewPrefab", "Default Name");
                 }
             });
             layout.addView(myButton, 300, 200);
