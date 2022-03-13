@@ -11,9 +11,17 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { person, map, camera } from 'ionicons/icons';
+import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+
+/* Main Pages */
 import ARTab from './pages/ARTab';
 import Profile from './pages/Profile';
-import tab2 from './pages/Tab2';
+import Map from './pages/Map';
+import SignUpPage from './pages/SignUpPage';
+import SignInPage from './pages/SignInPage';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -36,38 +44,77 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
+function PrivateRoutes() {
+  return (
+    <IonTabs>
+      <IonRouterOutlet>
         <Route exact path='/artab'>
-						<ARTab />
-					</Route>
-					<Route path='/profile'>
-						<Profile />
-					</Route>
-					<Route exact path='/'>
-						<Redirect to='/artab' />
-					</Route>
-        </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="artab" href="/artab">
-            <IonIcon icon={camera} />
-            <IonLabel>AR camera</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={map} />
-            <IonLabel>Map</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="profile" href='/profile/posts'>
-            <IonIcon icon={person} />
-            <IonLabel>Profile</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+          <ARTab />
+        </Route>
+        <Route exact path='/map'>
+          <Map />
+        </Route>
+        <Route path='/profile'>
+          <Profile />
+        </Route>
+      </IonRouterOutlet>
+      <IonTabBar slot="bottom">
+        <IonTabButton tab="artab" href="/artab">
+          <IonIcon icon={camera} />
+          <IonLabel>AR camera</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="map" href="/map">
+          <IonIcon icon={map} />
+          <IonLabel>Map</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="profile" href='/profile/posts'>
+          <IonIcon icon={person} />
+          <IonLabel>Profile</IonLabel>
+        </IonTabButton>
+      </IonTabBar>
+    </IonTabs>
+  );
+}
 
-export default App;
+function PublicRoutes() {
+  return (
+    <IonRouterOutlet>
+      <Route exact path="/signin">
+        <SignInPage />
+      </Route>
+      <Route exact path="/signup">
+        <SignUpPage />
+      </Route>
+    </IonRouterOutlet>
+  )
+}
+
+export default function App() {
+  const [userIsAuthenticated, setUserIsAuthenticated] = useState<any>(localStorage.getItem("userIsAuthtenticated"));
+  const auth = getAuth();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        console.log(user);
+        // User is authenticated
+        setUserIsAuthenticated(true);
+        localStorage.setItem("userIsAuthenticated", "true");
+      } else {
+        // User is signed out
+        setUserIsAuthenticated(false);
+        localStorage.removeItem("userIsAuthenticated");
+      }
+    });
+  }, [auth]);
+
+  return (
+    <IonApp>
+      <IonReactRouter>
+        {userIsAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
+        <Route>{userIsAuthenticated ? <Redirect to="/profile" /> : <Redirect to="/signin" />}</Route>
+      </IonReactRouter>
+    </IonApp>
+  );
+}
+

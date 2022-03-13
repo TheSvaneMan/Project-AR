@@ -61,39 +61,13 @@ public class MainUnityActivity extends UnityPlayerActivity{
         FrameLayout layout = mUnityPlayer;
         {
             Button myButton = new Button(this);
-            myButton.setText("Show Main");
+            myButton.setText("Go Back to Main App");
             myButton.setX(10);
             myButton.setY(500);
 
             myButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     showMainActivity("");
-                }
-            });
-            layout.addView(myButton, 300, 200);
-        }
-
-        {
-            Button myButton = new Button(this);
-            myButton.setText("Send Msg");
-            myButton.setX(320);
-            myButton.setY(500);
-            myButton.setOnClickListener( new View.OnClickListener() {
-                public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("Cube", "ChangeColor", "yellow");
-                }
-            });
-            layout.addView(myButton, 300, 200);
-        }
-
-        {
-            Button myButton = new Button(this);
-            myButton.setText("Change Object Name");
-            myButton.setX(200);
-            myButton.setY(800);
-            myButton.setOnClickListener( new View.OnClickListener() {
-                public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("AR Session Origin", "ionicChangeObjectName", newObjectName);
                 }
             });
             layout.addView(myButton, 300, 200);

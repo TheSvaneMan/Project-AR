@@ -1,5 +1,5 @@
 {
-	"appId": "io.ionic.starter",
+	"appId": "io.svane.app",
 	"appName": "ProjectAR",
 	"webDir": "build",
 	"bundledWebRuntime": false
