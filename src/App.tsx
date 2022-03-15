@@ -75,7 +75,7 @@ function PrivateRoutes() {
           <IonIcon icon={map} />
           <IonLabel>Map</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="profile" href='/profile/posts'>
+        <IonTabButton tab="profile" href='/profile'>
           <IonIcon icon={person} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>

@@ -1,6 +1,6 @@
 import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle } from '@ionic/react';
 import { IonContent, IonInput, IonImg, useIonLoading } from '@ionic/react';
-import './SettingsContainer.css';
+
 import { sunny } from 'ionicons/icons';
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
@@ -143,13 +143,6 @@ export default function SettingsContainer() {
 					</div>
 				</form>
 			</IonContent>
-			<h1>Name</h1>
-			<h3>To do</h3>
-			<ul>
-				<li>Update password?</li>
-				
-
-				<li>Toggle Dark mode</li>
 				<IonList>
 					<IonItem lines="none">
 						<IonIcon slot="start" icon={sunny} />
@@ -157,13 +150,6 @@ export default function SettingsContainer() {
 						<IonToggle slot="end" name="lightMode" onIonChange={toggleLightModeHandler} />
 					</IonItem>
 				</IonList>
-				<li>Customize Theme?</li>
-				<li>Set privacy?</li>
-				<li>See posts / AR based on city only</li>
-				<IonButton>On</IonButton>
-
-				<IonButton>Off</IonButton>
-			</ul>
 		</div>
 	);
 };

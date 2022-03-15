@@ -1,6 +1,6 @@
 
 import { IonPage, IonHeader, IonContent, IonLabel, IonRouterOutlet, IonTabs, IonTitle, IonToolbar, IonTabBar, IonTabButton, useIonLoading, IonButton, IonButtons, IonItem, IonInput, IonImg, IonIcon } from '@ionic/react';
-import { Route } from 'react-router';
+import { Redirect, Route } from 'react-router';
 import SettingsContainer from '../components/profile/SettingsContainer';
 import PostsContainer from '../components/profile/PostsContainer';
 
@@ -14,6 +14,7 @@ import { uploadString, ref, getDownloadURL } from "@firebase/storage";
 import { storage } from "../firebase-config";
 import { Toast } from "@capacitor/toast";
 import './Profile.css';
+import ProfileInfo from '../components/profile/ProfileInfo';
 
 export default function Profile() {
 	const auth = getAuth();
@@ -96,74 +97,17 @@ export default function Profile() {
 	}
 
 	return (
-		<IonPage className="profile">
-			<IonHeader>
-				<IonToolbar>
-					<IonTitle>Profile</IonTitle>
-					<IonButtons slot="primary">
-						<IonButton onClick={handleSignOut}>Sign Out</IonButton>
-					</IonButtons>
-				</IonToolbar>
-			</IonHeader>
-
-			<IonTabBar slot='bottom'>
-				<IonTabButton tab='today' href='/profile/posts'>
-					<IonLabel>Posts</IonLabel>
-				</IonTabButton>
-				<IonTabButton tab='meals' href='/profile/settings'>
-					<IonLabel>Settings</IonLabel>
-				</IonTabButton>
-			</IonTabBar>
-
+	
+		<IonTabs>
+				<IonTabBar>
+				<IonButton> Test</IonButton>
+				</IonTabBar>
+			
+			
 			<IonRouterOutlet>
-				<Route path='/profile/settings' component={SettingsContainer} exact />
-				<Route path='/profile/posts' component={PostsContainer} exact />
+				<Route path='/profile' component={ProfileInfo} exact />
 			</IonRouterOutlet>
-	
-			<IonContent>
-				<IonItem>
-					<IonLabel>Mail:</IonLabel>
-					{user?.email}
-				</IonItem>
-				<IonItem>
-					<IonLabel>uid:</IonLabel>
-					{user?.uid}
-				</IonItem>
-				<form onSubmit={handleSubmit}>
-					<IonItem>
-						<IonLabel position="stacked">Name</IonLabel>
-						<IonInput
-							value={name}
-							type="text"
-							placeholder="Type your name"
-							onIonChange={e => handleSetName(e)}
-						/>
-					</IonItem>
-					<IonItem>
-						<IonLabel position="stacked">Title</IonLabel>
-						<IonInput
-							value={title}
-							type="text"
-							placeholder="Type your name"
-							onIonChange={e => handleSetTitle(e)}
-						/>
-					</IonItem>
-					<IonItem onClick={takePicture} lines="none">
-						<IonLabel>Choose Image</IonLabel>
-						<IonButton>
-							<IonIcon slot="icon-only" icon={camera} />
-						</IonButton>
-					</IonItem>
-					{image && <IonImg className="ion-padding" src={image} onClick={takePicture} />}
-					<div className="ion-padding">
-						<IonButton type="submit" expand="block">
-							Save User
-						</IonButton>
-					</div>
-				</form>
-			</IonContent>
-	
-		</IonPage>
+			</IonTabs>
 	);
 };
 
