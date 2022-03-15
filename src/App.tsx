@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { person, map, camera } from 'ionicons/icons';
+import { person, map, camera, settings, addCircle } from 'ionicons/icons';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -22,6 +22,8 @@ import Profile from './pages/Profile';
 import Map from './pages/Map';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
+import AddPost from './pages/AddPost';
+import Settings from './pages/Settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -57,12 +59,25 @@ function PrivateRoutes() {
         <Route path='/profile'>
           <Profile />
         </Route>
+        <Route path='/Settings'>
+						<Settings />
+        </Route>
+        <Route path='/AddPost'>
+						<AddPost />
+          </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
+        <IonTabButton tab="Settings" href='/settings'>
+            <IonIcon icon={settings} />
+            <IonLabel>Settings</IonLabel>
+          </IonTabButton>
         <IonTabButton tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
         </IonTabButton>
+        <IonTabButton tab="addPost" href="/AddPost">
+            <IonIcon class='addCircle' icon={addCircle} />
+          </IonTabButton>
         <IonTabButton tab="map" href="/map">
           <IonIcon icon={map} />
           <IonLabel>Map</IonLabel>
