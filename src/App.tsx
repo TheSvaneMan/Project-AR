@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { person, map, camera, settings, addCircle } from 'ionicons/icons';
+import { person, map, camera, settings, addCircle, images } from 'ionicons/icons';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -42,6 +42,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Collection from './pages/Collection';
 
 setupIonicReact();
 
@@ -60,12 +61,19 @@ function PrivateRoutes() {
         </Route>
         <Route path='/addpost'>
 						<AddPost />
+        </Route>
+        <Route path='/collection'>
+						<Collection />
           </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="collection" href="/collection">
+          <IonIcon icon={images} />
+          <IonLabel>Collection</IonLabel>
         </IonTabButton>
         <IonTabButton tab="addpost" href="/addpost">
           <IonIcon class='addCircle' icon={addCircle} />

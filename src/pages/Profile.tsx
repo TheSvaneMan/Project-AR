@@ -16,6 +16,7 @@ import { Toast } from "@capacitor/toast";
 import './Profile.css';
 import ProfileInfo from '../components/profile/ProfileInfo';
 
+
 export default function Profile() {
 	const auth = getAuth();
 	// I am scared to use type any here -> It could be null, we need to do some better error handling here.
@@ -97,16 +98,20 @@ export default function Profile() {
 	}
 
 	return (
-	
-		<IonTabs>
-				<IonTabBar>
-				<IonButton> Test</IonButton>
+				<IonTabs>
+				<IonTabBar slot='bottom'>
+					<IonTabButton tab='posts' href='/profile/'>
+						<IonLabel>Posts</IonLabel>
+					</IonTabButton>
+					<IonTabButton tab='settings' href='/profile/settings'>
+						<IonLabel>Settings</IonLabel>
+					</IonTabButton>
 				</IonTabBar>
-			
-			
-			<IonRouterOutlet>
-				<Route path='/profile' component={ProfileInfo} exact />
-			</IonRouterOutlet>
+	
+				<IonRouterOutlet>
+					<Route path='/profile/settings' component={SettingsContainer} exact />
+					<Route path='/profile/' component={PostsContainer} exact />
+				</IonRouterOutlet>
 			</IonTabs>
 	);
 };
