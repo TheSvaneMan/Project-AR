@@ -6,10 +6,17 @@ import './Map.css';
 
 const Map: React.FC = () => {
   const [searchText, setSearchText] = useState('');
+  const [location, setLocation] = useState<any>();
+  // Default Geo location is Windhoek, Namibia
+  const [longitude, setLongitude] = useState<any>(17.08323);
+  const [latitude, setLatitude] = useState<any>(-22.55941);
+  // Will remain empty until we construct the post service
+  //const [posts, setPosts] = useState([]);
 
   const alertUser = () => {
     alert("Updated Preferences");
   }
+
   return (
     <IonPage>
       <IonHeader>
@@ -24,7 +31,6 @@ const Map: React.FC = () => {
       </IonItem>
       <IonButton>NFT Hunt</IonButton>
       <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
-
       <RenderMap />
     </IonPage>
   );
