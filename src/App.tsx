@@ -23,7 +23,6 @@ import Map from './pages/Map';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
 import AddPost from './pages/AddPost';
-import Settings from './pages/Settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -59,24 +58,18 @@ function PrivateRoutes() {
         <Route path='/profile'>
           <Profile />
         </Route>
-        <Route path='/Settings'>
-						<Settings />
-        </Route>
-        <Route path='/AddPost'>
+        <Route path='/addpost'>
 						<AddPost />
           </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="Settings" href='/settings'>
-            <IonIcon icon={settings} />
-            <IonLabel>Settings</IonLabel>
-          </IonTabButton>
         <IonTabButton tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="addPost" href="/AddPost">
-            <IonIcon class='addCircle' icon={addCircle} />
+        <IonTabButton tab="addpost" href="/addpost">
+          <IonIcon class='addCircle' icon={addCircle} />
+          <IonLabel>Add post</IonLabel>
           </IonTabButton>
         <IonTabButton tab="map" href="/map">
           <IonIcon icon={map} />

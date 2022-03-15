@@ -105,6 +105,21 @@ export default function Profile() {
 					</IonButtons>
 				</IonToolbar>
 			</IonHeader>
+
+			<IonTabBar slot='bottom'>
+				<IonTabButton tab='today' href='/profile/posts'>
+					<IonLabel>Posts</IonLabel>
+				</IonTabButton>
+				<IonTabButton tab='meals' href='/profile/settings'>
+					<IonLabel>Settings</IonLabel>
+				</IonTabButton>
+			</IonTabBar>
+
+			<IonRouterOutlet>
+				<Route path='/profile/settings' component={SettingsContainer} exact />
+				<Route path='/profile/posts' component={PostsContainer} exact />
+			</IonRouterOutlet>
+	
 			<IonContent>
 				<IonItem>
 					<IonLabel>Mail:</IonLabel>
@@ -147,7 +162,7 @@ export default function Profile() {
 					</div>
 				</form>
 			</IonContent>
-
+	
 		</IonPage>
 	);
 };

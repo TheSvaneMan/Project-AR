@@ -5,10 +5,9 @@ interface PostsProps {
 	name: string;
 }
 
-const PostsContainer: React.FC<PostsProps> = ({ name }) => {
+export default function PostsContainer() {
 	return (
 		<div className='postsContainer'>
-			<h1>{name}</h1>
 			<div className="postProfile">
 				{exampleARPosts.map((post) => {
 					return (
@@ -29,7 +28,6 @@ const PostsContainer: React.FC<PostsProps> = ({ name }) => {
 	);
 };
 
-export default PostsContainer;
 
 // This part has to be refactored to accomodate for a nested component that will handle each card that contains the data
 // IMG url will be for the firebase access, all this data down here will be moved to firebase -> It is hacky hack time here lol
