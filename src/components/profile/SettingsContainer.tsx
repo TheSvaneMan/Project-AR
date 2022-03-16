@@ -1,4 +1,4 @@
-import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle } from '@ionic/react';
+import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader } from '@ionic/react';
 import { IonContent, IonInput, IonImg, useIonLoading } from '@ionic/react';
 
 import { sunny } from 'ionicons/icons';
@@ -99,8 +99,16 @@ export default function SettingsContainer() {
 
 
 	return (
-		<div className='settingsContainer'>
-			
+		<IonPage>
+			<IonHeader>
+				<IonList>
+					<IonItem lines="none">
+						<IonIcon slot="start" icon={sunny} />
+						<IonLabel>Light Mode</IonLabel>
+						<IonToggle slot="end" name="lightMode" onIonChange={toggleLightModeHandler} />
+					</IonItem>
+				</IonList>
+			</IonHeader>
 			<IonContent>
 				<IonItem>
 					<IonLabel>Mail:</IonLabel>
@@ -143,13 +151,6 @@ export default function SettingsContainer() {
 					</div>
 				</form>
 			</IonContent>
-				<IonList>
-					<IonItem lines="none">
-						<IonIcon slot="start" icon={sunny} />
-						<IonLabel>Light Mode</IonLabel>
-						<IonToggle slot="end" name="lightMode" onIonChange={toggleLightModeHandler} />
-					</IonItem>
-				</IonList>
-		</div>
+		</IonPage>
 	);
 };

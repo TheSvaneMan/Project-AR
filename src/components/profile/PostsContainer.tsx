@@ -1,21 +1,36 @@
-import { IonCard, IonCardContent, IonCardHeader, IonContent, IonTitle } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonPage, IonTitle, useIonLoading } from '@ionic/react';
+import { useEffect, useState } from 'react';
 import './PostsContainer.css';
+import ProfileInfo from './ProfileInfo';
 
 interface PostsProps {
 	name: string;
 }
 
-export default function PostsContainer() {
+const PostsContainer = ({ userName }: any, { userTitle }: any) => {
+	const [user, setUser] = useState<any>({});
+	const [name, setName] = useState("");
+	const [title, setTitle] = useState("");
+	const [image, setImage] = useState("");
+	const [imageFile, setImageFile] = useState<any>({});
+	const [showLoader, dismissLoader] = useIonLoading();
+
+	useEffect(() => {
+		setName(userName);
+		setTitle(userTitle);
+	});
 	return (
-		<div className='postsContainer'>
-			<div className="postProfile">
+		<IonPage>
+			<ProfileInfo name={userName} title={userTitle} />
+			<div className='postsContainer'>
 				{exampleARPosts.map((post) => {
 					return (
-						<IonCard key={post.id}>
+						<IonCard key={post.id} className="profilePost">
 							<IonCardHeader>{post.name}</IonCardHeader>
 							<IonCardContent>
 								<h4>{post.description}</h4>
-								<img src={post.imgURL} alt={post.content} />
+								<IonImg src={post.imgURL} alt={post.content} className="profilePostImg" />
+
 								<hr />
 								<p>Latitude: {post.geolocation.latitude}</p>
 								<p>Longitude: {post.geolocation.longitude}</p>
@@ -24,10 +39,11 @@ export default function PostsContainer() {
 					);
 				})}
 			</div>
-		</div>
+		</IonPage>
 	);
 };
 
+export default PostsContainer;
 
 // This part has to be refactored to accomodate for a nested component that will handle each card that contains the data
 // IMG url will be for the firebase access, all this data down here will be moved to firebase -> It is hacky hack time here lol

@@ -1,15 +1,14 @@
-import { IonCard, IonCardContent, IonCardHeader, IonContent, IonLabel, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, IonTitle } from '@ionic/react';
-import { Redirect, Route } from 'react-router';
-import PostsContainer from './PostsContainer';
+import { IonContent, IonHeader, IonImg, IonLabel, IonTitle } from '@ionic/react';
+import './ProfileInfo.css';
 
-import SettingsContainer from './SettingsContainer';
-
-
-const ProfileInfo = ({name}:any, {image}:any) => {
+const ProfileInfo = ({ name }: any, { title }: any) => {
 	return (
-		<IonTabs>
-        
-		</IonTabs>
+		<div className="profileComponent">
+			<h1>{name}</h1>
+			<IonLabel>
+				{title}
+			</IonLabel>
+		</div>
 	);
 };
 

@@ -18,6 +18,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 /* Main Pages */
 import ARTab from './pages/ARTab';
+import Collection from './pages/Collection';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
 import SignUpPage from './pages/SignUpPage';
@@ -42,7 +43,6 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Collection from './pages/Collection';
 
 setupIonicReact();
 
@@ -50,21 +50,21 @@ function PrivateRoutes() {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route exact path='/artab'>
+        <Route path='/artab' exact>
           <ARTab />
         </Route>
-        <Route exact path='/map'>
+        <Route path='/map' exact >
           <Map />
         </Route>
         <Route path='/profile'>
           <Profile />
         </Route>
-        <Route path='/addpost'>
-						<AddPost />
+        <Route path='/addpost' exact>
+          <AddPost />
         </Route>
-        <Route path='/collection'>
-						<Collection />
-          </Route>
+        <Route path='/collection' exact>
+          <Collection />
+        </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="artab" href="/artab">
@@ -78,12 +78,12 @@ function PrivateRoutes() {
         <IonTabButton tab="addpost" href="/addpost">
           <IonIcon class='addCircle' icon={addCircle} />
           <IonLabel>Add post</IonLabel>
-          </IonTabButton>
+        </IonTabButton>
         <IonTabButton tab="map" href="/map">
           <IonIcon icon={map} />
           <IonLabel>Map</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="profile" href='/profile'>
+        <IonTabButton tab="profile" href='/profile/posts'>
           <IonIcon icon={person} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
@@ -128,7 +128,7 @@ export default function App() {
     <IonApp>
       <IonReactRouter>
         {userIsAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
-        <Route>{userIsAuthenticated ? <Redirect to="/profile" /> : <Redirect to="/signin" />}</Route>
+        <Route>{userIsAuthenticated ? <Redirect to="/map" /> : <Redirect to="/signin" />}</Route>
       </IonReactRouter>
     </IonApp>
   );
