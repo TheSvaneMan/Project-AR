@@ -46,7 +46,7 @@ const Profile = () => {
 		<IonTabs>
 			<IonRouterOutlet>
 				<Route path='/profile/posts' exact>
-					<PostsContainer userName={name} userTitle={title} />
+					<PostsContainer userName={name} />
 				</Route>
 				<Route path='/profile/settings' exact>
 					<SettingsContainer />
