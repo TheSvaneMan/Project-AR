@@ -7,8 +7,7 @@ import {
     IonItem
 } from "@ionic/react"
 
-export default function PostListItem({ post }:any) {
-
+export default function PostListItem({ post }: any) {
     return (
         <IonCard>
             <IonItem lines="none">

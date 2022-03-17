@@ -1,8 +1,10 @@
 
 import { IonPage, IonHeader, IonContent, IonLabel, IonRouterOutlet, IonTabs, IonTitle, IonToolbar, IonTabBar, IonTabButton, useIonLoading, IonButton, IonButtons, IonItem, IonInput, IonImg, IonIcon } from '@ionic/react';
 import { Redirect, Route } from 'react-router';
-import SettingsContainer from '../components/profile/SettingsContainer';
-import PostsContainer from '../components/profile/PostsContainer';
+import SettingsContainer from '../components/Profile/SettingsContainer';
+import PostsContainer from '../components/Profile/PostsContainer';
+
+import ProfileInfo from '../components/Profile/ProfileInfo';
 
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
@@ -14,7 +16,6 @@ import { uploadString, ref, getDownloadURL } from "@firebase/storage";
 import { storage } from "../firebase-config";
 import { Toast } from "@capacitor/toast";
 import './Profile.css';
-import ProfileInfo from '../components/profile/ProfileInfo';
 
 
 const Profile = () => {

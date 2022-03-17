@@ -1,15 +1,15 @@
-import { IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar } from "@ionic/react";
+import { IonContent, IonHeader, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, useIonLoading, useIonViewWillEnter } from "@ionic/react";
 import { useState, useEffect } from "react";
 import PostListItem from "../components/Post";
 import { postsRef, usersRef } from "../firebase-config";
 import { onValue, get } from "firebase/database";
 
 export default function PostsPage() {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<any>([]);
 
     async function getUsers() {
         const snapshot = await get(usersRef);
-        const usersArray = [];
+        const usersArray: any[] = [];
         snapshot.forEach(postSnapshot => {
             const id = postSnapshot.key;
             const data = postSnapshot.val();
@@ -21,14 +21,13 @@ export default function PostsPage() {
         });
 
         return usersArray;
-        
     }
 
     useEffect(() => {
         async function listenOnChange() {
             onValue(postsRef, async snapshot => {
                 const users = await getUsers();
-                const postsArray = [];
+                const postsArray: any[] = [];
                 snapshot.forEach(postSnapshot => {
                     const id = postSnapshot.key;
                     const data = postSnapshot.val();
@@ -58,9 +57,8 @@ export default function PostsPage() {
                         <IonTitle size="large">Posts</IonTitle>
                     </IonToolbar>
                 </IonHeader>
-
                 <IonList>
-                    {posts.map(post => (
+                    {posts.map((post: { id: any; }) => (
                         <PostListItem post={post} key={post.id} />
                     ))}
                 </IonList>
