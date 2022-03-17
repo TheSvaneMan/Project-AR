@@ -1,85 +1,58 @@
-// 2 errors in Typescript so we changed to JavaScript
-
-import { IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonIcon, IonImg, IonPage } from '@ionic/react';
+import { IonPage, useIonLoading, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
 import './AddPost.css';
-import { useState } from "react";
-import { Camera, CameraResultType, Photo } from "@capacitor/camera";
-import { camera } from "ionicons/icons";
+import { useHistory } from 'react-router';
+import { getAuth } from '@firebase/auth';
+import { postsRef, storage } from '../firebase-config';
+import { uploadString, ref, getDownloadURL } from "@firebase/storage";
+import { push, set } from '@firebase/database';
+import { Toast } from '@capacitor/toast';
+import PostForm from '../components/AddPost/PostForm';
 
 const AddPost = () => {
-    const [post, setPost] = useState({});
-    const [title, setTitle] = useState("");
-    const [body, setBody] = useState("");
-    const [image, setImage] = useState<any>();
-    const [imageFile, setImageFile] = useState<any>();
+    const history = useHistory();
+    const [showLoader, dismissLoader] = useIonLoading();
+    const auth = getAuth();
 
-    const submitEvent = () => {
-        const formData = { title: title, body: body, image: imageFile };
-        setPost(formData);
+    async function handleSubmit(newPost: any) {
+        showLoader();
+        newPost.uid = auth.currentUser!.uid; // default user id added
+        const newPostRef = push(postsRef); // push new to get reference and new id/key
+        const newPostKey = newPostRef.key; // key from reference
+        const imageUrl = await uploadImage(newPost.image, newPostKey);
+        newPost.image = imageUrl;
+        set(newPostRef, newPost)
+            .then(() => {
+                history.replace("/collection");
+                Toast.show({
+                    text: "New post created!"
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                dismissLoader();
+            });
     }
 
-    async function takePicture() {
-        const imageOptions = {
-            quality: 80,
-            width: 500,
-            allowEditing: true,
-            resultType: CameraResultType.DataUrl
-        };
-
-        const imageFromCamera = await Camera.getPhoto(imageOptions);
-        setImageFile(imageFromCamera);
-        setImage(imageFromCamera.dataUrl);
+    async function uploadImage(imageFile: any, postKey: any) {
+        const newImageRef = ref(storage, `${postKey}.${imageFile.format}`);
+        await uploadString(newImageRef, imageFile.dataUrl, "data_url");
+        const url = await getDownloadURL(newImageRef);
+        return url;
     }
 
-    // State Handlers
-    function handleSetTtitle(event: any) {
-        setTitle(event.currentTarget.value);
-    }
-
-    function handleSetBody(event: any) {
-        setBody(event.currentTarget.value);
-    }
     return (
         <IonPage>
-            <form onSubmit={submitEvent}>
-                <IonItem>
-                    <IonLabel position="stacked">Title</IonLabel>
-                    <IonInput
-                        value={title}
-                        placeholder="Give your image a title"
-                        onIonChange={e => handleSetTtitle(e)}
-                        required
-                    />
-                </IonItem>
-                <IonItem>
-                    <IonLabel position="stacked">Description</IonLabel>
-                    <IonTextarea
-                        value={body}
-                        placeholder="Tell us about your image"
-                        onIonChange={e => handleSetBody(e)}
-                        required
-                    />
-                </IonItem>
-                <IonItem onClick={takePicture} lines="none">
-                    <IonLabel>Choose Image</IonLabel>
-                    <IonButton>
-                        <IonIcon slot="icon-only" icon={camera} />
-                    </IonButton>
-                </IonItem>
-                {image && <IonImg className="ion-padding" src={image} onClick={takePicture} />}
-
-                <div className="ion-padding">
-                    {image && title && body ? (
-                        <IonButton expand="block">Save</IonButton>
-                    ) : (
-                        <IonButton onClick={submitEvent} type="submit" expand="block" disabled>
-                            Save
-                        </IonButton>
-                    )}
-                </div>
-            </form>
+            <IonContent fullscreen>
+                <IonHeader collapse="condense">
+                    <IonToolbar>
+                        <IonTitle size="large">Create New Post</IonTitle>
+                    </IonToolbar>
+                </IonHeader>
+                <PostForm handleSubmit={handleSubmit} />
+            </IonContent>
         </IonPage>
-
     );
 }
 

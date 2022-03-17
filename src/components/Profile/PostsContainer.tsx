@@ -1,48 +1,52 @@
-import { get, onValue } from '@firebase/database';
-import { IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonPage, IonTitle, useIonLoading } from '@ionic/react';
+import { getAuth } from '@firebase/auth';
+import { equalTo, get, onValue, orderByChild, query } from '@firebase/database';
+import { IonCard, IonCardContent, IonCardHeader, IonImg, IonLabel, IonList, IonListHeader, IonPage, IonTitle, useIonLoading } from '@ionic/react';
 import { useEffect, useState } from 'react';
-import { postsRef, usersRef } from '../../firebase-config';
+import { useParams } from 'react-router';
+import { getUserRef, postsRef } from '../../firebase-config';
 import './PostsContainer.css';
 import ProfileInfo from './ProfileInfo';
 
 
-const PostsContainer = ({ userName }: any, { userTitle }: any) => {
-	const [user, setUser] = useState({});
-	const [name, setName] = useState("");
-	const [title, setTitle] = useState("");
-	const [image, setImage] = useState("");
-	const [imageFile, setImageFile] = useState({});
-	const [showLoader, dismissLoader] = useIonLoading();
-	const [posts, setPosts] = useState<any>([]);
+const PostsContainer = () => {
+	const auth: any = getAuth();
+	const [user, setUser] = useState<any>({});
+	const [posts, setPosts] = useState([]);
+	const params = useParams();
+	// Hacky hack placeholder solution
+	const userId: any = user.id;
 
-	async function getUsers() {
-		const snapshot = await get(usersRef);
-		const usersArray: any[] = [];
-		snapshot.forEach(postSnapshot => {
-			const id = postSnapshot.key;
-			const data = postSnapshot.val();
-			const post = {
-				id,
-				...data
-			};
-			usersArray.push(post);
-		});
-
-		return usersArray;
-	}
 
 	useEffect(() => {
+		async function getUserDataOnce() {
+			const snapshot = await get(getUserRef(user.uid));
+			const userData = snapshot.val();
+			setUser({
+				id: userId,
+				...userData
+			});
+			console.log(user);
+			return userData;
+		}
+
+		// I understand the error occurs here because the implementation of userPage on the example code is used in context with selected a post and showing a user
+		// based on the post and the id is passed as a paramater (params) through the router and is accessed via useParams()
+
+		// I am too tired right now to refactor the profile page so it can just send the userId to this component for this to work, so yeah gg - I'm done
 		async function listenOnChange() {
-			onValue(postsRef, async snapshot => {
-				const users = await getUsers();
-				const postsArray: any[] = [];
+			console.log("userId", user.id);
+			const postsByUserId = query(postsRef, orderByChild("uid"), equalTo(userId));
+			const userData = await getUserDataOnce();
+
+			onValue(postsByUserId, async snapshot => {
+				const postsArray: any = [];
 				snapshot.forEach(postSnapshot => {
 					const id = postSnapshot.key;
 					const data = postSnapshot.val();
 					const post = {
 						id,
 						...data,
-						user: users.find(user => user.id == data.uid)
+						user: userData
 					};
 					postsArray.push(post);
 				});
@@ -50,93 +54,30 @@ const PostsContainer = ({ userName }: any, { userTitle }: any) => {
 			});
 		}
 		listenOnChange();
-	}, []);
+	}, [userId]);
+
 
 	return (
 		<IonPage>
-			<ProfileInfo name={userName} title={userTitle} />
-			<div className='postsContainer'>
-				{exampleARPosts.map((post) => {
+			<ProfileInfo />
+			<IonListHeader>
+				<IonLabel>{posts.length ? "Users Posts" : "No posts yet"}</IonLabel>
+			</IonListHeader>
+			<IonList>
+				{posts.map((post: any) => {
 					return (
 						<IonCard key={post.id} className="profilePost">
 							<IonCardHeader>{post.name}</IonCardHeader>
 							<IonCardContent>
 								<h4>{post.description}</h4>
 								<IonImg src={post.imgURL} alt={post.content} className="profilePostImg" />
-
-								<hr />
-								<p>Latitude: {post.geolocation.latitude}</p>
-								<p>Longitude: {post.geolocation.longitude}</p>
 							</IonCardContent>
 						</IonCard>
 					);
 				})}
-			</div>
+			</IonList>
 		</IonPage>
 	);
 };
 
 export default PostsContainer;
-
-// This part has to be refactored to accomodate for a nested component that will handle each card that contains the data
-// IMG url will be for the firebase access, all this data down here will be moved to firebase -> It is hacky hack time here lol
-
-// Requires styling
-
-// requires updates on posts layout and profile styling. 
-const exampleARPosts = [
-	{
-		id: '1',
-		name: 'Penda Svane',
-		imgURL:
-			'https://imgs.search.brave.com/J5KlBVidIoXnwnM1h5-KJtX46hKHHfvU7l2E3-_unlk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Nq/Z1M1NXRHb3Y1ZHFD/bkJ2aUhkb1ctMTIw/MC04MC5qcGc',
-		content: 'A drawing made to signify peace among all Earthlings',
-		description: 'A test post',
-		geolocation: { latitude: '20000', longitude: '500000' },
-	},
-	{
-		id: '2',
-		name: 'Penda Svane',
-		imgURL:
-			'https://imgs.search.brave.com/J5KlBVidIoXnwnM1h5-KJtX46hKHHfvU7l2E3-_unlk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Nq/Z1M1NXRHb3Y1ZHFD/bkJ2aUhkb1ctMTIw/MC04MC5qcGc',
-		content: 'A drawing made to signify peace among all Earthlings',
-		description: 'A test post',
-		geolocation: { latitude: '20000', longitude: '500000' },
-	},
-	{
-		id: '3',
-		name: 'Penda Svane',
-		imgURL:
-			'https://imgs.search.brave.com/J5KlBVidIoXnwnM1h5-KJtX46hKHHfvU7l2E3-_unlk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Nq/Z1M1NXRHb3Y1ZHFD/bkJ2aUhkb1ctMTIw/MC04MC5qcGc',
-		content: 'A drawing made to signify peace among all Earthlings',
-		description: 'A test post',
-		geolocation: { latitude: '20000', longitude: '500000' },
-	},
-	{
-		id: '4',
-		name: 'Penda Svane',
-		imgURL:
-			'https://imgs.search.brave.com/J5KlBVidIoXnwnM1h5-KJtX46hKHHfvU7l2E3-_unlk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Nq/Z1M1NXRHb3Y1ZHFD/bkJ2aUhkb1ctMTIw/MC04MC5qcGc',
-		content: 'A drawing made to signify peace among all Earthlings',
-		description: 'A test post',
-		geolocation: { latitude: '20000', longitude: '500000' },
-	},
-	{
-		id: '5',
-		name: 'Penda Svane',
-		imgURL:
-			'https://imgs.search.brave.com/J5KlBVidIoXnwnM1h5-KJtX46hKHHfvU7l2E3-_unlk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Nq/Z1M1NXRHb3Y1ZHFD/bkJ2aUhkb1ctMTIw/MC04MC5qcGc',
-		content: 'A drawing made to signify peace among all Earthlings',
-		description: 'A test post',
-		geolocation: { latitude: '20000', longitude: '500000' },
-	},
-	{
-		id: '6',
-		name: 'Penda Svane',
-		imgURL:
-			'https://imgs.search.brave.com/J5KlBVidIoXnwnM1h5-KJtX46hKHHfvU7l2E3-_unlk/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9jZG4u/bW9zLmNtcy5mdXR1/cmVjZG4ubmV0L0Nq/Z1M1NXRHb3Y1ZHFD/bkJ2aUhkb1ctMTIw/MC04MC5qcGc',
-		content: 'A drawing made to signify peace among all Earthlings',
-		description: 'A test post',
-		geolocation: { latitude: '20000', longitude: '500000' },
-	},
-];

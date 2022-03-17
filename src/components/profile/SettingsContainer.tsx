@@ -1,6 +1,5 @@
-import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader, IonButtons } from '@ionic/react';
+import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader } from '@ionic/react';
 import { IonContent, IonInput, IonImg, useIonLoading } from '@ionic/react';
-
 import { sunny } from 'ionicons/icons';
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
@@ -11,13 +10,8 @@ import { Camera, CameraResultType } from "@capacitor/camera";
 import { uploadString, ref, getDownloadURL } from "@firebase/storage";
 import { storage } from "../../firebase-config";
 import { Toast } from "@capacitor/toast";
-interface SettingsProps {
-	name: string;
-}
 
-
-const toggleLightModeHandler = () => document.body.classList.toggle('light');
-export default function SettingsContainer() {
+const SettingsContainer = () => {
 	const auth = getAuth();
 	// I am scared to use type any here -> It could be null, we need to do some better error handling here.
 	const [user, setUser] = useState<any>({});
@@ -27,9 +21,10 @@ export default function SettingsContainer() {
 	const [imageFile, setImageFile] = useState<any>({});
 	const [showLoader, dismissLoader] = useIonLoading();
 
+	const toggleLightModeHandler = () => document.body.classList.toggle('light');
+
 	useEffect(() => {
 		setUser(auth.currentUser);
-
 		async function getUserDataFromDB() {
 			const snapshot = await get(getUserRef(user.uid));
 			const userData = snapshot.val();
@@ -76,8 +71,8 @@ export default function SettingsContainer() {
 			allowEditing: true,
 			resultType: CameraResultType.DataUrl
 		};
-		const image = await Camera.getPhoto(imageOptions);
-		image.dataUrl = "";
+		let image: any;
+		image = await Camera.getPhoto(imageOptions);
 		setImageFile(image);
 		setImage(image.dataUrl);
 	}
@@ -96,8 +91,6 @@ export default function SettingsContainer() {
 	function handleSetTitle(event: any) {
 		setTitle(event.currentTarget.value);
 	}
-
-
 	return (
 		<IonPage>
 			<IonHeader>
@@ -140,7 +133,7 @@ export default function SettingsContainer() {
 						<IonInput
 							value={title}
 							type="text"
-							placeholder="Type your name"
+							placeholder="Type your title"
 							onIonChange={e => handleSetTitle(e)}
 						/>
 					</IonItem>
@@ -161,3 +154,5 @@ export default function SettingsContainer() {
 		</IonPage>
 	);
 };
+
+export default SettingsContainer;
