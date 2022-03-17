@@ -1,22 +1,69 @@
-import { IonCard, IonCardContent, IonCardHeader, IonContent, IonTitle } from '@ionic/react';
+import { get, onValue } from '@firebase/database';
+import { IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonPage, IonTitle, useIonLoading } from '@ionic/react';
+import { useEffect, useState } from 'react';
+import { postsRef, usersRef } from '../../firebase-config';
 import './PostsContainer.css';
+import ProfileInfo from './ProfileInfo';
 
-interface PostsProps {
-	name: string;
-}
 
-const PostsContainer: React.FC<PostsProps> = ({ name }) => {
+const PostsContainer = ({ userName }: any, { userTitle }: any) => {
+	const [user, setUser] = useState({});
+	const [name, setName] = useState("");
+	const [title, setTitle] = useState("");
+	const [image, setImage] = useState("");
+	const [imageFile, setImageFile] = useState({});
+	const [showLoader, dismissLoader] = useIonLoading();
+	const [posts, setPosts] = useState<any>([]);
+
+	async function getUsers() {
+		const snapshot = await get(usersRef);
+		const usersArray: any[] = [];
+		snapshot.forEach(postSnapshot => {
+			const id = postSnapshot.key;
+			const data = postSnapshot.val();
+			const post = {
+				id,
+				...data
+			};
+			usersArray.push(post);
+		});
+
+		return usersArray;
+	}
+
+	useEffect(() => {
+		async function listenOnChange() {
+			onValue(postsRef, async snapshot => {
+				const users = await getUsers();
+				const postsArray: any[] = [];
+				snapshot.forEach(postSnapshot => {
+					const id = postSnapshot.key;
+					const data = postSnapshot.val();
+					const post = {
+						id,
+						...data,
+						user: users.find(user => user.id == data.uid)
+					};
+					postsArray.push(post);
+				});
+				setPosts(postsArray.reverse());
+			});
+		}
+		listenOnChange();
+	}, []);
+
 	return (
-		<div className='postsContainer'>
-			<h1>{name}</h1>
-			<div className="postProfile">
+		<IonPage>
+			<ProfileInfo name={userName} title={userTitle} />
+			<div className='postsContainer'>
 				{exampleARPosts.map((post) => {
 					return (
-						<IonCard key={post.id}>
+						<IonCard key={post.id} className="profilePost">
 							<IonCardHeader>{post.name}</IonCardHeader>
 							<IonCardContent>
 								<h4>{post.description}</h4>
-								<img src={post.imgURL} alt={post.content} />
+								<IonImg src={post.imgURL} alt={post.content} className="profilePostImg" />
+
 								<hr />
 								<p>Latitude: {post.geolocation.latitude}</p>
 								<p>Longitude: {post.geolocation.longitude}</p>
@@ -25,7 +72,7 @@ const PostsContainer: React.FC<PostsProps> = ({ name }) => {
 					);
 				})}
 			</div>
-		</div>
+		</IonPage>
 	);
 };
 

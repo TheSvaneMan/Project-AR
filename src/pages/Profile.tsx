@@ -1,8 +1,10 @@
 
 import { IonPage, IonHeader, IonContent, IonLabel, IonRouterOutlet, IonTabs, IonTitle, IonToolbar, IonTabBar, IonTabButton, useIonLoading, IonButton, IonButtons, IonItem, IonInput, IonImg, IonIcon } from '@ionic/react';
-import { Route } from 'react-router';
-import SettingsContainer from '../components/profile/SettingsContainer';
-import PostsContainer from '../components/profile/PostsContainer';
+import { Redirect, Route } from 'react-router';
+import SettingsContainer from '../components/Profile/SettingsContainer';
+import PostsContainer from '../components/Profile/PostsContainer';
+
+import ProfileInfo from '../components/Profile/ProfileInfo';
 
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
@@ -15,7 +17,8 @@ import { storage } from "../firebase-config";
 import { Toast } from "@capacitor/toast";
 import './Profile.css';
 
-export default function Profile() {
+
+const Profile = () => {
 	const auth = getAuth();
 	// I am scared to use type any here -> It could be null, we need to do some better error handling here.
 	const [user, setUser] = useState<any>({});
@@ -40,116 +43,27 @@ export default function Profile() {
 		if (user) getUserDataFromDB();
 	}, [auth.currentUser, user]);
 
-	function handleSignOut() {
-		signOut(auth);
-	}
-
-	async function handleSubmit(event: any) {
-		event.preventDefault();
-		showLoader();
-
-		const userToUpdate = {
-			name: name,
-			title: title,
-			image: image
-		};
-
-		if (imageFile.dataUrl) {
-			const imageUrl = await uploadImage();
-			userToUpdate.image = imageUrl;
-		}
-
-		await update(getUserRef(user.uid), userToUpdate);
-		dismissLoader();
-		await Toast.show({
-			text: "User Profile saved!",
-			position: "top"
-		});
-	}
-
-	async function takePicture() {
-		const imageOptions = {
-			quality: 80,
-			width: 500,
-			allowEditing: true,
-			resultType: CameraResultType.DataUrl
-		};
-		const image = await Camera.getPhoto(imageOptions);
-		image.dataUrl = "";
-		setImageFile(image);
-		setImage(image.dataUrl);
-	}
-
-	async function uploadImage() {
-		const newImageRef = ref(storage, `${user.uid}.${imageFile.format}`);
-		await uploadString(newImageRef, imageFile.dataUrl, "data_url");
-		const url = await getDownloadURL(newImageRef);
-		return url;
-	}
-	// --------- Handle OnChangeEvents ------------- //
-	function handleSetName(event: any) {
-		setName(event.currentTarget.value);
-	}
-
-	function handleSetTitle(event: any) {
-		setTitle(event.currentTarget.value);
-	}
-
 	return (
-		<IonPage className="profile">
-			<IonHeader>
-				<IonToolbar>
-					<IonTitle>Profile</IonTitle>
-					<IonButtons slot="primary">
-						<IonButton onClick={handleSignOut}>Sign Out</IonButton>
-					</IonButtons>
-				</IonToolbar>
-			</IonHeader>
-			<IonContent>
-				<IonItem>
-					<IonLabel>Mail:</IonLabel>
-					{user?.email}
-				</IonItem>
-				<IonItem>
-					<IonLabel>uid:</IonLabel>
-					{user?.uid}
-				</IonItem>
-				<form onSubmit={handleSubmit}>
-					<IonItem>
-						<IonLabel position="stacked">Name</IonLabel>
-						<IonInput
-							value={name}
-							type="text"
-							placeholder="Type your name"
-							onIonChange={e => handleSetName(e)}
-						/>
-					</IonItem>
-					<IonItem>
-						<IonLabel position="stacked">Title</IonLabel>
-						<IonInput
-							value={title}
-							type="text"
-							placeholder="Type your name"
-							onIonChange={e => handleSetTitle(e)}
-						/>
-					</IonItem>
-					<IonItem onClick={takePicture} lines="none">
-						<IonLabel>Choose Image</IonLabel>
-						<IonButton>
-							<IonIcon slot="icon-only" icon={camera} />
-						</IonButton>
-					</IonItem>
-					{image && <IonImg className="ion-padding" src={image} onClick={takePicture} />}
-					<div className="ion-padding">
-						<IonButton type="submit" expand="block">
-							Save User
-						</IonButton>
-					</div>
-				</form>
-			</IonContent>
-
-		</IonPage>
+		<IonTabs>
+			<IonRouterOutlet>
+				<Route path='/profile/posts' exact>
+					<PostsContainer userName={name} />
+				</Route>
+				<Route path='/profile/settings' exact>
+					<SettingsContainer />
+				</Route>
+			</IonRouterOutlet>
+			<IonTabBar slot='bottom'>
+				<IonTabButton tab='posts' href='/profile/posts'>
+					<IonLabel>Posts</IonLabel>
+				</IonTabButton>
+				<IonTabButton tab='settings' href='/profile/settings'>
+					<IonLabel>Settings</IonLabel>
+				</IonTabButton>
+			</IonTabBar>
+		</IonTabs>
 	);
 };
 
+export default Profile;
 

@@ -4,7 +4,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import './RenderMap.css';
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useEffect, useState } from 'react';
-import { IonButton } from '@ionic/react';
+import { IonButton, IonContent } from '@ionic/react';
 
 const RenderMap: React.FC<any> = () => {
     // Default Geo location is Windhoek, Namibia
@@ -59,7 +59,8 @@ const RenderMap: React.FC<any> = () => {
             </IonButton>
             <div id="map">
 
-            </div></>
+            </div>
+        </>
     )
 }
 

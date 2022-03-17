@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { person, map, camera } from 'ionicons/icons';
+import { person, map, camera, settings, addCircle, images } from 'ionicons/icons';
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -18,10 +18,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 /* Main Pages */
 import ARTab from './pages/ARTab';
+import Collection from './pages/Collection';
 import Profile from './pages/Profile';
 import Map from './pages/Map';
 import SignUpPage from './pages/SignUpPage';
 import SignInPage from './pages/SignInPage';
+import AddPost from './pages/AddPost';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,20 +50,34 @@ function PrivateRoutes() {
   return (
     <IonTabs>
       <IonRouterOutlet>
-        <Route exact path='/artab'>
+        <Route path='/artab' exact>
           <ARTab />
         </Route>
-        <Route exact path='/map'>
+        <Route path='/map' exact >
           <Map />
         </Route>
         <Route path='/profile'>
           <Profile />
+        </Route>
+        <Route path='/addpost' exact>
+          <AddPost />
+        </Route>
+        <Route path='/collection' exact>
+          <Collection />
         </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="collection" href="/collection">
+          <IonIcon icon={images} />
+          <IonLabel>Collection</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="addpost" href="/addpost">
+          <IonIcon class='addCircle' icon={addCircle} />
+          <IonLabel>Add post</IonLabel>
         </IonTabButton>
         <IonTabButton tab="map" href="/map">
           <IonIcon icon={map} />
@@ -112,7 +128,7 @@ export default function App() {
     <IonApp>
       <IonReactRouter>
         {userIsAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
-        <Route>{userIsAuthenticated ? <Redirect to="/profile" /> : <Redirect to="/signin" />}</Route>
+        <Route>{userIsAuthenticated ? <Redirect to="/map" /> : <Redirect to="/signin" />}</Route>
       </IonReactRouter>
     </IonApp>
   );
