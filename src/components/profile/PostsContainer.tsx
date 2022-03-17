@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './PostsContainer.css';
 import ProfileInfo from './ProfileInfo';
 import '../../theme/tailwind.css';
+import '../../theme/additional.css';
 interface PostsProps {
 	name: string;
 }

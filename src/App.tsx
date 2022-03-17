@@ -46,6 +46,7 @@ import './theme/variables.css';
 /* Tailwind */
 import './theme/tailwind.css';
 import './theme/output.css';
+import './theme/additional.css';
 
 setupIonicReact();
 
