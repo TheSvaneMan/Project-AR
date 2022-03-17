@@ -45,11 +45,11 @@ const ARContainer: React.FC<ARContainerInterface> = ({ name }) => {
 	}
 
 	return (
-		<div className='settingsContainer'>
+		<div className='settingsContainer flex flex-col items-center'>
 			<h1>{name}</h1>
 			<h2>Unity Ionic Intergration Methods</h2>
-			<IonButton onClick={testPlugin}>Test Custom Plugin</IonButton>
-			<IonButton onClick={openUnityThroughPlugin}>Open Unity</IonButton>
+			<IonButton className="bg-gradient-to-r from-blue-700 to-purple-900" onClick={testPlugin}>Test Custom Plugin</IonButton>
+			<IonButton className="arButton"onClick={openUnityThroughPlugin}>Open Unity</IonButton>
 			<IonItem>
 				<IonInput
 					value={objectName}

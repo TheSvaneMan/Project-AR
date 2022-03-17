@@ -43,6 +43,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+/* Tailwind */
+import './theme/tailwind.css';
+import './theme/output.css';
 
 setupIonicReact();
 
@@ -68,23 +71,22 @@ function PrivateRoutes() {
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="artab" href="/artab">
-          <IonIcon icon={camera} />
+          <IonIcon class='h-6' icon={camera} />
           <IonLabel>AR camera</IonLabel>
         </IonTabButton>
         <IonTabButton tab="collection" href="/collection">
-          <IonIcon icon={images} />
+          <IonIcon class='h-6' icon={images} />
           <IonLabel>Collection</IonLabel>
         </IonTabButton>
         <IonTabButton tab="addpost" href="/addpost">
-          <IonIcon class='addCircle' icon={addCircle} />
-          <IonLabel>Add post</IonLabel>
+          <IonIcon class='text-5xl absolute bottom-6 z-[110]' icon={addCircle} />
         </IonTabButton>
         <IonTabButton tab="map" href="/map">
-          <IonIcon icon={map} />
+          <IonIcon class='h-6' icon={map} />
           <IonLabel>Map</IonLabel>
         </IonTabButton>
         <IonTabButton tab="profile" href='/profile/posts'>
-          <IonIcon icon={person} />
+          <IonIcon class='h-6' icon={person} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>
       </IonTabBar>

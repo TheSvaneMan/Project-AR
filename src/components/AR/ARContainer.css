@@ -22,3 +22,11 @@
 .arContainer a {
   text-decoration: none;
 }
+
+.arButton button{
+  background-image: linear-gradient(to right, #1d4ed8, #581c87);
+}
+
+.button-native{
+  background-image: linear-gradient(to right, #1d4ed8, #581c87);
+}

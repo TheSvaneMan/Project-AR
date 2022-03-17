@@ -1,7 +1,6 @@
 // 2 errors in Typescript so we changed to JavaScript
 
 import { IonItem, IonLabel, IonInput, IonTextarea, IonButton, IonIcon, IonImg, IonPage } from '@ionic/react';
-import './AddPost.css';
 import { useState } from "react";
 import { Camera, CameraResultType, Photo } from "@capacitor/camera";
 import { camera } from "ionicons/icons";

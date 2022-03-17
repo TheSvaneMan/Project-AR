@@ -2,7 +2,7 @@ import { IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonPage, Io
 import { useEffect, useState } from 'react';
 import './PostsContainer.css';
 import ProfileInfo from './ProfileInfo';
-
+import '../../theme/tailwind.css';
 interface PostsProps {
 	name: string;
 }
@@ -22,14 +22,14 @@ const PostsContainer = ({ userName }: any, { userTitle }: any) => {
 	return (
 		<IonPage>
 			<ProfileInfo name={userName} title={userTitle} />
-			<div className='postsContainer'>
+			<div className='overflow-auto h-4/5'>
 				{exampleARPosts.map((post) => {
 					return (
-						<IonCard key={post.id} className="profilePost">
+						<IonCard key={post.id} className="profilePost bg-color-purple-900">
 							<IonCardHeader>{post.name}</IonCardHeader>
 							<IonCardContent>
 								<h4>{post.description}</h4>
-								<IonImg src={post.imgURL} alt={post.content} className="profilePostImg" />
+								<IonImg src={post.imgURL} className="postImage" />
 
 								<hr />
 								<p>Latitude: {post.geolocation.latitude}</p>

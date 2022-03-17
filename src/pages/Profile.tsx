@@ -13,7 +13,6 @@ import { Camera, CameraResultType } from "@capacitor/camera";
 import { uploadString, ref, getDownloadURL } from "@firebase/storage";
 import { storage } from "../firebase-config";
 import { Toast } from "@capacitor/toast";
-import './Profile.css';
 import ProfileInfo from '../components/Profile/ProfileInfo';
 
 
