@@ -6,52 +6,52 @@ import './PostsContainer.css';
 import ProfileInfo from './ProfileInfo';
 
 
-const PostsContainer = ({ userName }, { userTitle }) => {
+const PostsContainer = ({ userName }: any, { userTitle }: any) => {
 	const [user, setUser] = useState({});
 	const [name, setName] = useState("");
 	const [title, setTitle] = useState("");
 	const [image, setImage] = useState("");
 	const [imageFile, setImageFile] = useState({});
 	const [showLoader, dismissLoader] = useIonLoading();
-	const [posts, setPosts] = useState([]);
+	const [posts, setPosts] = useState<any>([]);
 
 	async function getUsers() {
-        const snapshot = await get(usersRef);
-        const usersArray = [];
-        snapshot.forEach(postSnapshot => {
-            const id = postSnapshot.key;
-            const data = postSnapshot.val();
-            const post = {
-                id,
-                ...data
-            };
-            usersArray.push(post);
-        });
+		const snapshot = await get(usersRef);
+		const usersArray: any[] = [];
+		snapshot.forEach(postSnapshot => {
+			const id = postSnapshot.key;
+			const data = postSnapshot.val();
+			const post = {
+				id,
+				...data
+			};
+			usersArray.push(post);
+		});
 
-        return usersArray;
-    }
+		return usersArray;
+	}
 
-    useEffect(() => {
-        async function listenOnChange() {
-            onValue(postsRef, async snapshot => {
-                const users = await getUsers();
-                const postsArray = [];
-                snapshot.forEach(postSnapshot => {
-                    const id = postSnapshot.key;
-                    const data = postSnapshot.val();
-                    const post = {
-                        id,
-                        ...data,
-                        user: users.find(user => user.id == data.uid)
-                    };
-                    postsArray.push(post);
-                });
-                setPosts(postsArray.reverse());
-            });
-        }
-        listenOnChange();
+	useEffect(() => {
+		async function listenOnChange() {
+			onValue(postsRef, async snapshot => {
+				const users = await getUsers();
+				const postsArray: any[] = [];
+				snapshot.forEach(postSnapshot => {
+					const id = postSnapshot.key;
+					const data = postSnapshot.val();
+					const post = {
+						id,
+						...data,
+						user: users.find(user => user.id == data.uid)
+					};
+					postsArray.push(post);
+				});
+				setPosts(postsArray.reverse());
+			});
+		}
+		listenOnChange();
 	}, []);
-	
+
 	return (
 		<IonPage>
 			<ProfileInfo name={userName} title={userTitle} />
