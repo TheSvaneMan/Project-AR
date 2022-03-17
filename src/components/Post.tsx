@@ -22,3 +22,5 @@ export default function PostListItem({ post }: any) {
         </IonCard>
     );
 }
+
+

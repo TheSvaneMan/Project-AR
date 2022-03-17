@@ -19,8 +19,8 @@ export default function PostsPage() {
             };
             usersArray.push(post);
         });
-
         return usersArray;
+        
     }
 
     useEffect(() => {
@@ -36,11 +36,13 @@ export default function PostsPage() {
                         ...data,
                         user: users.find(user => user.id == data.uid)
                     };
+                    console.log(post);
                     postsArray.push(post);
                 });
                 setPosts(postsArray.reverse());
             });
         }
+        
         listenOnChange();
     }, []);
 
