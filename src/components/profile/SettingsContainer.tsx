@@ -1,4 +1,4 @@
-import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader } from '@ionic/react';
+import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader, IonButtons } from '@ionic/react';
 import { IonContent, IonInput, IonImg, useIonLoading } from '@ionic/react';
 
 import { sunny } from 'ionicons/icons';
@@ -107,7 +107,14 @@ export default function SettingsContainer() {
 						<IonLabel>Light Mode</IonLabel>
 						<IonToggle slot="end" name="lightMode" onIonChange={toggleLightModeHandler} />
 					</IonItem>
+					<IonItem lines="none">
+						<IonButton>
+							<IonButton onClick={handleSignOut}>Sign Out</IonButton>
+						</IonButton>
+					</IonItem>
 				</IonList>
+				<IonHeader>
+				</IonHeader>
 			</IonHeader>
 			<IonContent>
 				<IonItem>
