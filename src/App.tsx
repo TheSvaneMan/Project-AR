@@ -128,7 +128,7 @@ export default function App() {
     <IonApp>
       <IonReactRouter>
         {userIsAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
-        <Route>{userIsAuthenticated ? <Redirect to="/map" /> : <Redirect to="/signin" />}</Route>
+        <Route>{userIsAuthenticated ? <Redirect to="/collection" /> : <Redirect to="/signin" />}</Route>
       </IonReactRouter>
     </IonApp>
   );
