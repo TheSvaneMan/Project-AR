@@ -1,4 +1,5 @@
 import {
+    IonButton,
     IonCard,
     IonCardContent,
     IonCardHeader,
@@ -6,6 +7,21 @@ import {
     IonImg,
     IonItem
 } from "@ionic/react"
+import { deleteDoc, updateDoc } from "firebase/firestore";
+
+
+const delete = async (id) => {
+    const posts = doc(db, "posts", id);
+    await deleteDoc(posts);
+}
+ 
+const edit = async (id, image, title, body) => {
+    const posts = doc(db, "posts", id);
+    const newValues = { newImage, newTitle, newBody };
+    await updateDoc(posts);
+}
+
+
 
 export default function PostListItem({ post }: any) {
     return (
@@ -19,6 +35,8 @@ export default function PostListItem({ post }: any) {
                 </IonCardTitle>
             </IonCardHeader>
             <IonCardContent>{post.body}</IonCardContent>
+            <IonButton className='' onClick={() => { edit(post.id) }}>Edit</IonButton>
+			<IonButton className='' onClick={() => { delete(post.id) }}>Delete</IonButton>
         </IonCard>
     );
 }

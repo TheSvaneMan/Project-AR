@@ -1,5 +1,5 @@
 import { get, onValue } from '@firebase/database';
-import { IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonPage, IonTitle, useIonLoading } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonPage, IonTitle, useIonLoading } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { postsRef, usersRef } from '../../firebase-config';
 import './PostsContainer.css';
@@ -52,11 +52,13 @@ const PostsContainer = ({ userName }: any, { userTitle }: any) => {
 		listenOnChange();
 	}, []);
 
+
 	return (
 		<IonPage>
 			<ProfileInfo name={userName} title={userTitle} />
 			<div className='postsContainer'>
 				{exampleARPosts.map((post) => {
+					const x = post.id;
 					return (
 						<IonCard key={post.id} className="profilePost">
 							<IonCardHeader>{post.name}</IonCardHeader>
