@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-
+import "./SignUpPage.css";
 
 export default function SignUpPage() {
     const [mail, setMail] = useState("");
@@ -50,8 +50,12 @@ export default function SignUpPage() {
                     </IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent fullscreen>
+            <div className='signUpContent'>
                 <form onSubmit={handleSubmit}>
+                    <div className="signUpFormInner">
+                        <h3>Project AR</h3>
+                        <p>Sign Up to start your next big mixed-reality adventure</p>
+                    </div>
                     <IonItem>
                         <IonLabel position="stacked">Mail</IonLabel>
                         <IonInput
@@ -76,12 +80,12 @@ export default function SignUpPage() {
                         </IonButton>
                     </div>
                     <div className="ion-text-center">
-                        <IonButton size="small" fill="clear" onClick={() => history.replace("/signin")}>
+                        <IonButton color='primary-contrast' size="small" onClick={() => history.replace("/signin")}>
                             Go back to sign in
                         </IonButton>
                     </div>
                 </form>
-            </IonContent>
+            </div>
         </IonPage>
     )
 }

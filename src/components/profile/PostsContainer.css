@@ -1,13 +1,4 @@
-.postsContainer {
-    overflow: auto;
-    height: 80vh;
-}
-
-/* --------- Profile Post styling ---------- */
-.profilePost {
-    background-color: rgb(84, 30, 170);
-}
-
-.profilePostImg {
-    border-radius: 50vh;
+.postList {
+    height: 60vh;
+    overflow: scroll;
 }

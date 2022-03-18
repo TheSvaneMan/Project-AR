@@ -6,6 +6,7 @@ import PostsContainer from '../components/Profile/PostsContainer';
 import './Profile.css';
 
 const Profile = () => {
+	console.log("Profile Page running");
 	return (
 		<IonTabs>
 			<IonRouterOutlet>

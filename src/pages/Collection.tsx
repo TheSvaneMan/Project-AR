@@ -4,7 +4,7 @@ import PostListItem from "../components/Post";
 import { postsRef, usersRef } from "../firebase-config";
 import { onValue, get } from "firebase/database";
 
-export default function PostsPage() {
+const Collection = () => {
     const [posts, setPosts] = useState<any>([]);
 
     async function getUsers() {
@@ -20,7 +20,7 @@ export default function PostsPage() {
             usersArray.push(post);
         });
         return usersArray;
-        
+
     }
 
     useEffect(() => {
@@ -42,23 +42,18 @@ export default function PostsPage() {
                 setPosts(postsArray.reverse());
             });
         }
-        
+
         listenOnChange();
     }, []);
 
     return (
         <IonPage className="posts-page">
-            <IonHeader>
+            <IonHeader collapse="condense">
                 <IonToolbar>
-                    <IonTitle>Posts</IonTitle>
+                    <IonTitle size="large">My Collection</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">Posts</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
                 <IonList>
                     {posts.map((post: { id: any; }) => (
                         <PostListItem post={post} key={post.id} />
@@ -68,3 +63,5 @@ export default function PostsPage() {
         </IonPage>
     );
 }
+
+export default Collection;

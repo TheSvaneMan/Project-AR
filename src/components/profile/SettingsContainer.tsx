@@ -91,6 +91,7 @@ const SettingsContainer = () => {
 	function handleSetTitle(event: any) {
 		setTitle(event.currentTarget.value);
 	}
+	console.log("Settings Tab running");
 	return (
 		<IonPage>
 			<IonHeader>

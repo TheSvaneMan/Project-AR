@@ -65,7 +65,7 @@ function PrivateRoutes() {
           <Collection />
         </Route>
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
+      <IonTabBar slot="bottom" color="tertiary">
         <IonTabButton tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
