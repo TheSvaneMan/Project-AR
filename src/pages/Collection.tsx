@@ -48,7 +48,7 @@ const Collection = () => {
 
     return (
         <IonPage className="posts-page">
-            <IonHeader collapse="condense">
+            <IonHeader>
                 <IonToolbar>
                     <IonTitle size="large">My Collection</IonTitle>
                 </IonToolbar>

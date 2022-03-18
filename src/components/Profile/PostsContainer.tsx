@@ -44,11 +44,13 @@ const PostsContainer = () => {
 						user: userData
 					};
 					postsArray.push(post);
+					
 				});
 				setPosts(postsArray.reverse());
 			});
 		}
 		listenOnChange();
+		
 	}, [userId]);
 
 
