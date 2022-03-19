@@ -75,12 +75,25 @@ public class MainUnityActivity extends UnityPlayerActivity {
 
         {
             Button myButton = new Button(this);
-            myButton.setText("Change Object to Custom Object");
+            myButton.setText("Penda Art :D");
             myButton.setX(200);
             myButton.setY(1000);
             myButton.setOnClickListener( new View.OnClickListener() {
                 public void onClick(View v) {
                     mUnityPlayer.UnitySendMessage("AR Session Origin", "ionicPlaceNewPrefab", "Default Name");
+                }
+            });
+            layout.addView(myButton, 300, 200);
+        }
+
+        {
+            Button myButton = new Button(this);
+            myButton.setText("Wiktor Art :D");
+            myButton.setX(400);
+            myButton.setY(1000);
+            myButton.setOnClickListener( new View.OnClickListener() {
+                public void onClick(View v) {
+                    mUnityPlayer.UnitySendMessage("AR Session Origin", "ionicWiktorPrefab", "Default Name");
                 }
             });
             layout.addView(myButton, 300, 200);
