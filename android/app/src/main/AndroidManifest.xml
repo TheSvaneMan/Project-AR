@@ -23,6 +23,15 @@
             </intent-filter>
 
         </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name="io.svane.app.MainUnityActivity"
+            android:screenOrientation="fullSensor"
+            android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
+            android:hardwareAccelerated="false"
+            android:process=":Unity">
+        </activity>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
