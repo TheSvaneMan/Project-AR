@@ -1,6 +1,5 @@
 import { IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ARContainer from '../components/AR/ARContainer';
-import './ARTab.css';
 
 const ARTab: React.FC = () => {
   return (

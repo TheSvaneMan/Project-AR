@@ -2,7 +2,6 @@ import { IonButton, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonSearchbar
 import { sunny } from 'ionicons/icons';
 import { useState } from 'react';
 import RenderMap from '../components/Map/RenderMap';
-import './Map.css';
 
 const Map: React.FC = () => {
   const [searchText, setSearchText] = useState('');
@@ -24,13 +23,6 @@ const Map: React.FC = () => {
           <IonTitle>Map</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonItem className='mapSwitch' lines="none">
-        <IonIcon slot="start" icon={sunny} />
-        <IonLabel>Show Nearby Art</IonLabel>
-        <IonToggle slot="end" name="Show Art" onIonChange={alertUser} />
-      </IonItem>
-      <IonButton className='mapButton'>NFT Hunt</IonButton>
-      <IonSearchbar className='mapSearch' value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
       <RenderMap />
     </IonPage>
   );

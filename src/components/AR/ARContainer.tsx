@@ -46,21 +46,19 @@ const ARContainer: React.FC<ARContainerInterface> = ({ name }) => {
 
 	return (
 		<div className='settingsContainer'>
-			<h1>{name}</h1>
-			<h2>Unity Ionic Intergration Methods</h2>
-			<IonButton onClick={testPlugin}>Test Custom Plugin</IonButton>
-			<IonButton onClick={openUnityThroughPlugin}>Open Unity</IonButton>
-			<IonItem>
+			<IonButton className='arButtonMargin' onClick={testPlugin}>Test Custom Plugin</IonButton>
+			<IonButton className='arButtonMargin' onClick={openUnityThroughPlugin}>Open Unity</IonButton>
+			<IonItem className='arNameBox'>
 				<IonInput
 					value={objectName}
 					placeholder='Name your new AR Object'
 					onIonChange={(e) => setObjectName(e.detail.value!)}
 				></IonInput>
 			</IonItem>
-			<IonButton onClick={() => createNewObjectName(objectName)}>
+			<IonButton className='arButtonMargin' onClick={() => createNewObjectName(objectName)}>
 				Change Object Name in Unity
 			</IonButton>
-			<IonButton onClick={alertARObject}>Show Current Object name</IonButton>
+			<IonButton className='arButtonMargin' onClick={alertARObject}>Show Current Object name</IonButton>
 		</div>
 	);
 };

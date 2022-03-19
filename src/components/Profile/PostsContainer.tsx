@@ -60,7 +60,7 @@ const PostsContainer = () => {
             </IonHeader>
 			<ProfileInfo />
 			<IonListHeader >
-				<IonTitle>{posts.length ? "My Posts" : "No posts yet"}</IonTitle>
+				<IonTitle className='profileTitle'>{posts.length ? "My Posts" : "No posts yet"}</IonTitle>
 			</IonListHeader>
 			<IonList className="postList">
 				{posts.map((post: any) => {

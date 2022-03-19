@@ -1,5 +1,4 @@
 import { IonPage, useIonLoading, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/react';
-import './AddPost.css';
 import { useHistory } from 'react-router';
 import { getAuth } from '@firebase/auth';
 import { postsRef, storage } from '../firebase-config';

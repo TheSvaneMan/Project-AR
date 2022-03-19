@@ -14,7 +14,7 @@ export default function PostForm({ post, handleSubmit }: any) {
     const [location, setLocation] = useState<any>();
     const [currentLatitude, setCurrentLatitude] = useState<any>();
     const [currentLongitude, setCurrentLongitude] = useState<any>();
-
+    
 
     useEffect(() => {
         if (post) {
