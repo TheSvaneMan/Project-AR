@@ -7,11 +7,13 @@ import {
     IonItem,
     IonLabel,
     IonInput,
-    IonButton
+    IonButton,
+    IonImg
 } from "@ionic/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import "./SignInPage.css";
 
 export default function SignInPage() {
     const [mail, setMail] = useState("");
@@ -42,14 +44,18 @@ export default function SignInPage() {
     }
 
     return (
-        <IonPage className="posts-page">
+        <IonPage>
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>Sign In</IonTitle>
                 </IonToolbar>
             </IonHeader>
-            <IonContent fullscreen>
-                <form onSubmit={handleSubmit}>
+            <div className='signInContent'>
+                <form onSubmit={handleSubmit} className='signInForm'>
+                    <div className="signInFormInner">
+                        <h3>Project AR</h3>
+                        <p>The Portal to your next big adventure</p>
+                    </div>
                     <IonItem>
                         <IonLabel position="stacked">Mail</IonLabel>
                         <IonInput
@@ -68,18 +74,19 @@ export default function SignInPage() {
                             onIonChange={e => handleSetPassword(e)}
                         />
                     </IonItem>
+
                     <div className="ion-padding">
                         <IonButton type="submit" expand="block">
                             Sign in
                         </IonButton>
                     </div>
                     <div className="ion-text-center">
-                        <IonButton size="small" fill="clear" onClick={() => history.replace("/signup")}>
+                        <IonButton color='primary-contrast' size="small" onClick={() => history.replace("/signup")}>
                             Sign Up
                         </IonButton>
                     </div>
                 </form>
-            </IonContent>
+            </div>
         </IonPage>
     );
 }

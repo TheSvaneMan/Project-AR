@@ -1,0 +1,15 @@
+.profilePost {
+    background-color: #2C284F;
+    padding: 0.5vh;
+    box-shadow: 0px 0px 10px #111;
+}
+
+.profilePostHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profilePostImg {
+    box-shadow: rgba(0, 0, 0, 0.486) 2px 10px 15px;
+}

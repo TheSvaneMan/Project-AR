@@ -12,7 +12,6 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { person, map, camera, settings, addCircle, images } from 'ionicons/icons';
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
@@ -66,7 +65,7 @@ function PrivateRoutes() {
           <Collection />
         </Route>
       </IonRouterOutlet>
-      <IonTabBar slot="bottom">
+      <IonTabBar slot="bottom" color="tertiary">
         <IonTabButton tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
@@ -128,7 +127,7 @@ export default function App() {
     <IonApp>
       <IonReactRouter>
         {userIsAuthenticated ? <PrivateRoutes /> : <PublicRoutes />}
-        <Route>{userIsAuthenticated ? <Redirect to="/map" /> : <Redirect to="/signin" />}</Route>
+        <Route>{userIsAuthenticated ? <Redirect to="/collection" /> : <Redirect to="/signin" />}</Route>
       </IonReactRouter>
     </IonApp>
   );

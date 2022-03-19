@@ -1,6 +1,5 @@
-import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader, IonButtons } from '@ionic/react';
+import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader, IonToolbar, IonTitle } from '@ionic/react';
 import { IonContent, IonInput, IonImg, useIonLoading } from '@ionic/react';
-
 import { sunny } from 'ionicons/icons';
 import { useState, useEffect } from "react";
 import { getAuth, signOut } from "firebase/auth";
@@ -11,13 +10,9 @@ import { Camera, CameraResultType } from "@capacitor/camera";
 import { uploadString, ref, getDownloadURL } from "@firebase/storage";
 import { storage } from "../../firebase-config";
 import { Toast } from "@capacitor/toast";
-interface SettingsProps {
-	name: string;
-}
+import './SettingsContainer.css';
 
-
-const toggleLightModeHandler = () => document.body.classList.toggle('light');
-export default function SettingsContainer() {
+const SettingsContainer = () => {
 	const auth = getAuth();
 	// I am scared to use type any here -> It could be null, we need to do some better error handling here.
 	const [user, setUser] = useState<any>({});
@@ -27,9 +22,10 @@ export default function SettingsContainer() {
 	const [imageFile, setImageFile] = useState<any>({});
 	const [showLoader, dismissLoader] = useIonLoading();
 
+	const toggleLightModeHandler = () => document.body.classList.toggle('light');
+
 	useEffect(() => {
 		setUser(auth.currentUser);
-
 		async function getUserDataFromDB() {
 			const snapshot = await get(getUserRef(user.uid));
 			const userData = snapshot.val();
@@ -76,8 +72,8 @@ export default function SettingsContainer() {
 			allowEditing: true,
 			resultType: CameraResultType.DataUrl
 		};
-		const image = await Camera.getPhoto(imageOptions);
-		image.dataUrl = "";
+		let image: any;
+		image = await Camera.getPhoto(imageOptions);
 		setImageFile(image);
 		setImage(image.dataUrl);
 	}
@@ -96,12 +92,16 @@ export default function SettingsContainer() {
 	function handleSetTitle(event: any) {
 		setTitle(event.currentTarget.value);
 	}
-
-
+	console.log("Settings Tab running");
 	return (
-		<IonPage>
+		<IonPage className='settingsPage'>
 			<IonHeader>
-				<IonList>
+                    <IonToolbar>
+                        <IonTitle size="large">Profile</IonTitle>
+                    </IonToolbar>
+            </IonHeader>
+			
+				<IonList className='settingsTopButtons'>
 					<IonItem lines="none">
 						<IonIcon slot="start" icon={sunny} />
 						<IonLabel>Light Mode</IonLabel>
@@ -113,20 +113,18 @@ export default function SettingsContainer() {
 						</IonButton>
 					</IonItem>
 				</IonList>
-				<IonHeader>
-				</IonHeader>
-			</IonHeader>
-			<IonContent>
-				<IonItem>
+				
+			<IonContent className='settingsContent'>
+				<IonItem className='marginRight'>
 					<IonLabel>Mail:</IonLabel>
 					{user?.email}
 				</IonItem>
-				<IonItem>
+				<IonItem className='marginRight'>
 					<IonLabel>uid:</IonLabel>
 					{user?.uid}
 				</IonItem>
 				<form onSubmit={handleSubmit}>
-					<IonItem>
+					<IonItem className='marginRight'>
 						<IonLabel position="stacked">Name</IonLabel>
 						<IonInput
 							value={name}
@@ -135,16 +133,16 @@ export default function SettingsContainer() {
 							onIonChange={e => handleSetName(e)}
 						/>
 					</IonItem>
-					<IonItem>
+					<IonItem className='marginRight'>
 						<IonLabel position="stacked">Title</IonLabel>
 						<IonInput
 							value={title}
 							type="text"
-							placeholder="Type your name"
+							placeholder="Type your title"
 							onIonChange={e => handleSetTitle(e)}
 						/>
 					</IonItem>
-					<IonItem onClick={takePicture} lines="none">
+					<IonItem className='marginRightS' onClick={takePicture} lines="none">
 						<IonLabel>Choose Image</IonLabel>
 						<IonButton>
 							<IonIcon slot="icon-only" icon={camera} />
@@ -161,3 +159,5 @@ export default function SettingsContainer() {
 		</IonPage>
 	);
 };
+
+export default SettingsContainer;

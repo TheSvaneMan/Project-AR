@@ -2,3 +2,9 @@
     overflow: auto;
     height: 80vh;
 }
+
+.postCard{
+    margin: 30px 0px;
+    box-shadow: 0px 0px 10px #111;
+    background-color: #2C284F;
+}

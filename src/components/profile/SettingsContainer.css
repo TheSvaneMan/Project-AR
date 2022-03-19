@@ -1,19 +1,8 @@
-.settingsContainer {
-  text-align: center;
+
+.marginRight{
+  margin-right: 20px;
 }
 
-.settingsContainer strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-.settingsContainer p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-.settingsContainer a {
-  text-decoration: none;
+.marginRightS{
+  margin-right: 10px;
 }

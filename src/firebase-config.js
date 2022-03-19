@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref } from "firebase/database";
-import { getAnalytics } from "firebase/analytics";
 import { getStorage } from "firebase/storage";
 import { initializeAuth, indexedDBLocalPersistence } from '@firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use

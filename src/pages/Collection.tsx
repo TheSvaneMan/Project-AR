@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import PostListItem from "../components/Post";
 import { postsRef, usersRef } from "../firebase-config";
 import { onValue, get } from "firebase/database";
+import './Collection.css';
 
-export default function PostsPage() {
+const Collection = () => {
     const [posts, setPosts] = useState<any>([]);
 
     async function getUsers() {
@@ -19,8 +20,8 @@ export default function PostsPage() {
             };
             usersArray.push(post);
         });
-
         return usersArray;
+
     }
 
     useEffect(() => {
@@ -36,27 +37,24 @@ export default function PostsPage() {
                         ...data,
                         user: users.find(user => user.id == data.uid)
                     };
+                    console.log(post);
                     postsArray.push(post);
                 });
                 setPosts(postsArray.reverse());
             });
         }
+
         listenOnChange();
     }, []);
 
     return (
         <IonPage className="posts-page">
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Posts</IonTitle>
+            <IonHeader className="collectionHeader">
+                <IonToolbar className="collectionToolBar">
+                    <IonTitle className="collectionHeader" size="large">My Collection</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>
-                <IonHeader collapse="condense">
-                    <IonToolbar>
-                        <IonTitle size="large">Posts</IonTitle>
-                    </IonToolbar>
-                </IonHeader>
                 <IonList>
                     {posts.map((post: { id: any; }) => (
                         <PostListItem post={post} key={post.id} />
@@ -66,3 +64,5 @@ export default function PostsPage() {
         </IonPage>
     );
 }
+
+export default Collection;

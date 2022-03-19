@@ -4,13 +4,19 @@ import { Geolocation } from '@capacitor/geolocation';
 import './RenderMap.css';
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useEffect, useState } from 'react';
-import { IonButton, IonContent } from '@ionic/react';
+import { IonButton, IonContent, IonIcon, IonItem, IonLabel, IonSearchbar, IonToggle } from '@ionic/react';
+import { sunny } from 'ionicons/icons';
 
 const RenderMap: React.FC<any> = () => {
     // Default Geo location is Windhoek, Namibia
     const [location, setLocation] = useState<any>();
     const [currentLatitude, setCurrentLatitude] = useState<any>(-22.55941);
     const [currentLongitude, setCurrentLongitude] = useState<any>(17.08323);
+    const [searchText, setSearchText] = useState('');
+
+    const alertUser = () => {
+        alert("Updated Preferences");
+      }
 
     useEffect(() => {
         // TO MAKE THE MAP APPEAR YOU MUST
@@ -48,15 +54,25 @@ const RenderMap: React.FC<any> = () => {
         console.log('API Geo response', postLocation);
         console.log('Current latitude:', latitude);
         console.log('Current longitude:', longitude);
+        
         setCurrentLatitude(latitude);
         setCurrentLongitude(longitude);
         setLocation(postLocation);
     }
     return (
         <>
-            <IonButton onClick={setCurrentPosition}>
+            <div className='mapSettings'>
+      <IonItem className='mapSwitch' lines="none">
+        <IonIcon slot="start" icon={sunny} />
+        <IonLabel>Show Nearby Art</IonLabel>
+        <IonToggle slot="end" name="Show Art" onIonChange={alertUser} />
+      </IonItem>
+                <IonButton className='mapButton nftHunt'>NFT Hunt</IonButton>
+                <IonButton className='mapButton nftHunt' onClick={setCurrentPosition}>
                 Display Current Location
             </IonButton>
+      <IonSearchbar className='mapSearch' value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
+            </div>
             <div id="map">
 
             </div>
