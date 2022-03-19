@@ -5,24 +5,20 @@ import './ARTab.css';
 const ARTab: React.FC = () => {
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>AR Tab</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">AR Tab</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonCard>
+        <IonCard className='arCard'>
           <IonCardHeader>Unity AR Application</IonCardHeader>
           <IonCardContent>
             Unity embedded viewer, either UnityWebGL build or Native
           </IonCardContent>
         </IonCard>
-        <ARContainer name={'AR Container'} />
+        <ARContainer name={''} />
       </IonContent>
     </IonPage>
   );

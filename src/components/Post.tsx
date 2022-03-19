@@ -9,9 +9,7 @@ import {
 
 export default function PostListItem({ post }: any) {
     return (
-        <IonCard>
-            <IonItem lines="none">
-            </IonItem>
+        <IonCard className="postCard">
             <IonImg className="post-img" src={post.image} />
             <IonCardHeader>
                 <IonCardTitle>

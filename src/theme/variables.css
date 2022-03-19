@@ -153,7 +153,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: #1F1B35;
     --ion-background-color-rgb: 0, 0, 0;
 
     --ion-text-color: #ffffff;
@@ -179,14 +179,14 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
-    --ion-item-background: #000000;
+    --ion-item-background: #1F1B35;
 
     --ion-card-background: #1c1c1d;
   }
 
   .ios ion-modal {
     --ion-background-color: var(--ion-color-step-100);
-    --ion-toolbar-background: var(--ion-color-step-150);
+    --ion-toolbar-background: rgba(0, 0, 0, 0);
     --ion-toolbar-border-color: var(--ion-color-step-250);
   }
 
@@ -227,11 +227,12 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: rgba(0, 0, 0, 0);
 
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+    --ion-tab-bar-height: 70px
   }
 }
 
@@ -250,3 +251,120 @@ body.light {
 .ios .body.dark {}
 
 .md .body.dark {}
+
+ion-tab-bar{
+   height: 70px
+}
+
+ion-toolbar{
+  --background: rgba(0, 0, 0, 0) !important;
+  --border-color: rgba(0, 0, 0, 0) !important;
+}
+
+ion-title{
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0px;
+  text-align: start;
+  padding: 0px 16px;
+}
+
+ion-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px;
+  height: 70px;
+  font-size:x-large;
+  background-image: linear-gradient(40deg, rgb(81, 0, 255), rgb(90, 66, 167), rgb(90, 66, 167), rgb(146, 92, 233), rgb(87, 77, 219));
+}
+
+ion-header, ion-toolbar {
+  --min-height: 70px;
+}
+
+ion-toolbar{
+  background: none !important;
+}
+
+.settingsTopButtons {
+  margin: 20px 0px;
+}
+
+.secondaryTabBar{
+  box-shadow: 0px 0px 10px #111;
+  --background: #2C284F;
+}
+
+.profileLabel{
+  font-size: large;
+  background-color: #8442ff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.addForm{
+  margin-top: 20px;
+}
+
+.addField {
+  padding-right: 20px;
+}
+.addFieldS {
+  padding-right: 10px;
+}
+
+.addButton{
+  margin: 0px 20px;
+}
+
+.arCard{
+  background-image: linear-gradient(40deg, rgb(81, 0, 255), rgb(90, 66, 167), rgb(90, 66, 167), rgb(146, 92, 233), rgb(87, 77, 219));
+  border: 2px rgb(215, 196, 255) solid;
+  font-size: large;
+  margin: 20px;
+}
+
+.arCard ion-card-header, ion-card-content{
+color: #fff;
+}
+
+.settingsContainer{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px;
+}
+
+.mapSwitch{
+  height: 75px;
+  margin: 20px 0px 0px 0px;
+}
+
+.mapButton{
+  margin: 10px 20px;
+  height: 90px;
+  padding: 5px;
+}
+
+.mapSearch{
+  padding: 10px 25px;
+}
+
+ion-toolbar ion-title{
+  color: #fff;
+}
+
+ion-list-header ion-title{
+  color: #222;
+}
+
+ion-card-title h1{
+  color: #fff;
+}
+
+ion-card-title h4{
+  color: #fff;
+}

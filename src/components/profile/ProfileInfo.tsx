@@ -14,7 +14,7 @@ const ProfileInfo = ({ userInfo }: any) => {
 	const [image, setImage] = useState("");
 	const [imageFile, setImageFile] = useState<any>({});
 	const [showLoader, dismissLoader] = useIonLoading();
-
+	
 	useEffect(() => {
 		setUser(auth.currentUser);
 		async function getUserDataFromDB() {
@@ -31,7 +31,12 @@ const ProfileInfo = ({ userInfo }: any) => {
 
 	return (
 		<IonCard className="profileComponent">
-			<IonCardHeader>
+			<IonCardContent className='picCard'>
+				<IonAvatar className='profilePic'>
+					<img src={image} alt="Profile Picture" className="profilePicture" />
+				</IonAvatar>
+			</IonCardContent>
+			<IonCardHeader className='nameCard'>
 				<IonCardTitle className="profileName">
 					{name}
 				</IonCardTitle>
@@ -40,11 +45,6 @@ const ProfileInfo = ({ userInfo }: any) => {
 					{title}
 				</IonCardSubtitle>
 			</IonCardHeader>
-			<IonCardContent>
-				<IonAvatar>
-					<img src={image} alt="Profile Picture" className="profilePicture" />
-				</IonAvatar>
-			</IonCardContent>
 		</IonCard>
 	);
 };

@@ -54,7 +54,7 @@ const RenderMap: React.FC<any> = () => {
     }
     return (
         <>
-            <IonButton onClick={setCurrentPosition}>
+            <IonButton className='mapButton' onClick={setCurrentPosition}>
                 Display Current Location
             </IonButton>
             <div id="map">

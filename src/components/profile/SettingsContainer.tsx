@@ -1,4 +1,4 @@
-import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader } from '@ionic/react';
+import { IonButton, IonList, IonItem, IonIcon, IonLabel, IonToggle, IonPage, IonHeader, IonToolbar, IonTitle } from '@ionic/react';
 import { IonContent, IonInput, IonImg, useIonLoading } from '@ionic/react';
 import { sunny } from 'ionicons/icons';
 import { useState, useEffect } from "react";
@@ -10,6 +10,7 @@ import { Camera, CameraResultType } from "@capacitor/camera";
 import { uploadString, ref, getDownloadURL } from "@firebase/storage";
 import { storage } from "../../firebase-config";
 import { Toast } from "@capacitor/toast";
+import './SettingsContainer.css';
 
 const SettingsContainer = () => {
 	const auth = getAuth();
@@ -93,9 +94,14 @@ const SettingsContainer = () => {
 	}
 	console.log("Settings Tab running");
 	return (
-		<IonPage>
+		<IonPage className='settingsPage'>
 			<IonHeader>
-				<IonList>
+                    <IonToolbar>
+                        <IonTitle size="large">Profile</IonTitle>
+                    </IonToolbar>
+            </IonHeader>
+			
+				<IonList className='settingsTopButtons'>
 					<IonItem lines="none">
 						<IonIcon slot="start" icon={sunny} />
 						<IonLabel>Light Mode</IonLabel>
@@ -107,20 +113,18 @@ const SettingsContainer = () => {
 						</IonButton>
 					</IonItem>
 				</IonList>
-				<IonHeader>
-				</IonHeader>
-			</IonHeader>
-			<IonContent>
-				<IonItem>
+				
+			<IonContent className='settingsContent'>
+				<IonItem className='marginRight'>
 					<IonLabel>Mail:</IonLabel>
 					{user?.email}
 				</IonItem>
-				<IonItem>
+				<IonItem className='marginRight'>
 					<IonLabel>uid:</IonLabel>
 					{user?.uid}
 				</IonItem>
 				<form onSubmit={handleSubmit}>
-					<IonItem>
+					<IonItem className='marginRight'>
 						<IonLabel position="stacked">Name</IonLabel>
 						<IonInput
 							value={name}
@@ -129,7 +133,7 @@ const SettingsContainer = () => {
 							onIonChange={e => handleSetName(e)}
 						/>
 					</IonItem>
-					<IonItem>
+					<IonItem className='marginRight'>
 						<IonLabel position="stacked">Title</IonLabel>
 						<IonInput
 							value={title}
@@ -138,7 +142,7 @@ const SettingsContainer = () => {
 							onIonChange={e => handleSetTitle(e)}
 						/>
 					</IonItem>
-					<IonItem onClick={takePicture} lines="none">
+					<IonItem className='marginRightS' onClick={takePicture} lines="none">
 						<IonLabel>Choose Image</IonLabel>
 						<IonButton>
 							<IonIcon slot="icon-only" icon={camera} />

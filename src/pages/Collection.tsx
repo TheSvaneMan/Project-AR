@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import PostListItem from "../components/Post";
 import { postsRef, usersRef } from "../firebase-config";
 import { onValue, get } from "firebase/database";
+import './Collection.css';
 
 const Collection = () => {
     const [posts, setPosts] = useState<any>([]);
@@ -48,9 +49,9 @@ const Collection = () => {
 
     return (
         <IonPage className="posts-page">
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle size="large">My Collection</IonTitle>
+            <IonHeader className="collectionHeader">
+                <IonToolbar className="collectionToolBar">
+                    <IonTitle className="collectionHeader" size="large">My Collection</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent fullscreen>

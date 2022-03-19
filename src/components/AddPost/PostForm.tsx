@@ -4,6 +4,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import { Camera, CameraResultType } from "@capacitor/camera";
 import { camera, compassSharp } from "ionicons/icons";
 
+
 export default function PostForm({ post, handleSubmit }: any) {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
@@ -76,8 +77,8 @@ export default function PostForm({ post, handleSubmit }: any) {
     }
 
     return (
-        <form onSubmit={submitEvent}>
-            <IonItem>
+        <form className="addForm" onSubmit={submitEvent}>
+            <IonItem className="addField">
                 <IonLabel position="stacked">Title</IonLabel>
                 <IonInput
                     value={title}
@@ -86,7 +87,7 @@ export default function PostForm({ post, handleSubmit }: any) {
                     required
                 />
             </IonItem>
-            <IonItem>
+            <IonItem className="addField">
                 <IonLabel position="stacked">Description</IonLabel>
                 <IonTextarea
                     value={body}
@@ -95,14 +96,14 @@ export default function PostForm({ post, handleSubmit }: any) {
                     required
                 />
             </IonItem>
-            <IonItem onClick={takePicture} lines="none">
+            <IonItem className="addFieldS" onClick={takePicture} lines="none">
                 <IonLabel>Choose Image</IonLabel>
                 <IonButton>
                     <IonIcon slot="icon-only" icon={camera} />
                 </IonButton>
             </IonItem>
             <hr />
-            <IonItem onClick={setCurrentPosition} lines="none">
+            <IonItem className="addFieldS" onClick={setCurrentPosition} lines="none">
                 <IonLabel>Add current location</IonLabel>
                 <IonButton>
                     <IonIcon slot="icon-only" icon={compassSharp} />
@@ -113,9 +114,9 @@ export default function PostForm({ post, handleSubmit }: any) {
 
             <>
                 {image && title && body ? (
-                    <IonButton expand="block">Save</IonButton>
+                    <IonButton className="addButton" expand="block">Save</IonButton>
                 ) : (
-                    <IonButton type="submit" expand="block" disabled>
+                    <IonButton className="addButton" type="submit" expand="block" disabled>
                         Save
                     </IonButton>
                 )}

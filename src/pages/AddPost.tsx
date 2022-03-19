@@ -44,12 +44,13 @@ const AddPost = () => {
 
     return (
         <IonPage>
-            <IonContent fullscreen>
-                <IonHeader collapse="condense">
+            
+            <IonHeader>
                     <IonToolbar>
                         <IonTitle size="large">Create New Post</IonTitle>
                     </IonToolbar>
-                </IonHeader>
+            </IonHeader>
+            <IonContent fullscreen>
                 <PostForm handleSubmit={handleSubmit} />
             </IonContent>
         </IonPage>

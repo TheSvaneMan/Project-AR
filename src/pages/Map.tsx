@@ -24,13 +24,13 @@ const Map: React.FC = () => {
           <IonTitle>Map</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonItem lines="none">
+      <IonItem className='mapSwitch' lines="none">
         <IonIcon slot="start" icon={sunny} />
-        <IonLabel>Show Near by Art</IonLabel>
+        <IonLabel>Show Nearby Art</IonLabel>
         <IonToggle slot="end" name="Show Art" onIonChange={alertUser} />
       </IonItem>
-      <IonButton>NFT Hunt</IonButton>
-      <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
+      <IonButton className='mapButton'>NFT Hunt</IonButton>
+      <IonSearchbar className='mapSearch' value={searchText} onIonChange={e => setSearchText(e.detail.value!)}></IonSearchbar>
       <RenderMap />
     </IonPage>
   );

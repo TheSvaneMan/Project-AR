@@ -1,6 +1,6 @@
 import { getAuth } from '@firebase/auth';
 import { equalTo, get, onValue, orderByChild, query } from 'firebase/database';
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonContent, IonImg, IonLabel, IonList, IonListHeader, IonPage, IonTitle, useIonLoading } from '@ionic/react';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonImg, IonLabel, IonList, IonListHeader, IonPage, IonTitle, IonToolbar, useIonLoading } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getUserRef, postsRef } from '../../firebase-config';
@@ -10,12 +10,9 @@ import ProfileCardItem from './ProfilePostCard';
 
 
 const PostsContainer = () => {
-	const auth = getAuth();
 	const currentUserId = getAuth().currentUser!.uid;
 	const [user, setUser] = useState({});
 	const [posts, setPosts] = useState([]);
-	const params = useParams();
-	// Hacky hack placeholder solution
 	const userId = currentUserId;
 
 	useEffect(() => {
@@ -56,9 +53,14 @@ const PostsContainer = () => {
 
 	return (
 		<IonPage>
+			<IonHeader>
+                    <IonToolbar>
+                        <IonTitle size="large">Profile</IonTitle>
+                    </IonToolbar>
+            </IonHeader>
 			<ProfileInfo />
 			<IonListHeader >
-				<IonTitle color='tertiary'>{posts.length ? "My Posts" : "No posts yet"}</IonTitle>
+				<IonTitle>{posts.length ? "My Posts" : "No posts yet"}</IonTitle>
 			</IonListHeader>
 			<IonList className="postList">
 				{posts.map((post: any) => {
