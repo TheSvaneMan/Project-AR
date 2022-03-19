@@ -61,7 +61,7 @@ const RenderMap: React.FC<any> = () => {
     }
     return (
         <>
-            <div className='mapSettings'>
+            <div className='mapSettings' id='settingsToggle'>
       <IonItem className='mapSwitch' lines="none">
         <IonIcon slot="start" icon={sunny} />
         <IonLabel>Show Nearby Art</IonLabel>

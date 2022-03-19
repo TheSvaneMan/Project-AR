@@ -172,6 +172,7 @@ ion-card-title h4{
   top: 70px;
   background: #1F1B35;
   width: 100%;
+  display: none;
 }
 
 .light .mapSettings{
@@ -187,4 +188,8 @@ ion-card-title h4{
 .light .postCard {
   background-color: #fff;
   color: #2C284F;
+}
+
+.settingsOpen{
+  display: block;
 }
