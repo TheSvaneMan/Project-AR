@@ -46,7 +46,7 @@ export default function SignUpPage() {
             <IonHeader>
                 <IonToolbar>
                     <IonTitle>
-                        SignUp
+                        Sign Up
                     </IonTitle>
                 </IonToolbar>
             </IonHeader>

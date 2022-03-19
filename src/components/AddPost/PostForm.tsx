@@ -102,7 +102,7 @@ export default function PostForm({ post, handleSubmit }: any) {
                     <IonIcon slot="icon-only" icon={camera} />
                 </IonButton>
             </IonItem>
-            <hr />
+            
             <IonItem className="addFieldS" onClick={setCurrentPosition} lines="none">
                 <IonLabel>Add current location</IonLabel>
                 <IonButton>

@@ -6,7 +6,7 @@ const ARTab: React.FC = () => {
     <IonPage>
       
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
+        <IonHeader>
           <IonToolbar>
             <IonTitle size="large">AR Tab</IonTitle>
           </IonToolbar>
@@ -14,7 +14,7 @@ const ARTab: React.FC = () => {
         <IonCard className='arCard'>
           <IonCardHeader>Unity AR Application</IonCardHeader>
           <IonCardContent>
-            Unity embedded viewer, either UnityWebGL build or Native
+            On this page you can add your posts in the real world by placing them in AR
           </IonCardContent>
         </IonCard>
         <ARContainer name={''} />
