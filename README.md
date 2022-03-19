@@ -46,3 +46,5 @@ To run on Android you have to:
 - Unity -> Android embedded Unity -> Android embedded: https://drive.google.com/file/d/1vx5j3Z55teYBmGvNCdQZACjQQhWbL-_K/view, Unzip and put in “C:\UnityProject”
 - Run in Android studio, if it doesn't work invalidate caches and rebuild project.
 
+// ----------------- Additional links ----------------- //
+First repo: https://github.com/WiktorrWie/ProjectAR
