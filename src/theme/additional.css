@@ -7,24 +7,24 @@ body.light {
 
   --ion-item-background: #fff;
   --ion-list-header-color: #222;
-  }
+}
 
 
 .ios .body.dark {}
 
 .md .body.dark {}
 
-ion-tab-bar{
-   height: 70px;
-   box-shadow: 0px 0px 10px #111;
+ion-tab-bar {
+  height: 70px;
+  box-shadow: 0px 0px 10px #111;
 }
 
-ion-toolbar{
+ion-toolbar {
   --background: rgba(0, 0, 0, 0) !important;
   --border-color: rgba(0, 0, 0, 0) !important;
 }
 
-ion-title{
+ion-title {
   font-size: x-large;
   display: flex;
   justify-content: center;
@@ -34,13 +34,13 @@ ion-title{
   padding: 0px 16px;
 }
 
-ion-header{
+ion-header {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 20px;
   height: 70px;
-  font-size:x-large;
+  font-size: x-large;
   box-shadow: 0px 0px 10px #111;
   background-image: linear-gradient(40deg, rgb(81, 0, 255), rgb(90, 66, 167), rgb(90, 66, 167), rgb(146, 92, 233), rgb(87, 77, 219));
 }
@@ -49,7 +49,7 @@ ion-header, ion-toolbar {
   --min-height: 70px;
 }
 
-ion-toolbar{
+ion-toolbar {
   background: none !important;
 }
 
@@ -57,12 +57,12 @@ ion-toolbar{
   margin: 20px 0px;
 }
 
-.secondaryTabBar{
+.secondaryTabBar {
   box-shadow: 0px 0px 10px #111;
   --background: #2C284F;
 }
 
-.profileLabel{
+.profileLabel {
   font-size: large;
   background-color: #8442ff;
   color: #fff;
@@ -70,22 +70,23 @@ ion-toolbar{
   border-radius: 5px;
 }
 
-.addForm{
+.addForm {
   margin-top: 20px;
 }
 
 .addField {
   padding: 10px 20px;
 }
+
 .addFieldS {
   padding: 10px 20px;
 }
 
-.addButton{
+.addButton {
   margin: 0px 20px;
 }
 
-.arCard{
+.arCard {
   background-image: linear-gradient(40deg, rgb(81, 0, 255), rgb(90, 66, 167), rgb(90, 66, 167), rgb(146, 92, 233), rgb(87, 77, 219));
   border: 2px rgb(215, 196, 255) solid;
   font-size: large;
@@ -93,80 +94,80 @@ ion-toolbar{
   box-shadow: 0px 0px 10px #111;
 }
 
-.light .arCard{
+.light .arCard {
   border: none;
 }
 
-.arCard ion-card-header{
-color: #fff;
+.arCard ion-card-header {
+  color: #fff;
 }
 
-.arCard ion-card-content{
+.arCard ion-card-content {
   color: #fff;
-  }
+}
 
-.settingsContainer{
+.settingsContainer {
   display: flex;
   flex-direction: column;
   margin: 0px 20px;
 }
 
-.mapSwitch{
+.mapSwitch {
   height: 75px;
   margin: 20px 0px -30px 0px;
 }
 
-.mapButton{
+.mapButton {
   margin: 10px 20px;
   height: 90px;
   padding: 5px;
 }
 
-.mapSearch{
+.mapSearch {
   padding: 10px 25px;
 }
 
-ion-toolbar ion-title{
+ion-toolbar ion-title {
   color: #fff;
 }
 
-ion-card-title h1{
+ion-card-title h1 {
   color: #fff;
 }
 
-ion-card-title h4{
+ion-card-title h4 {
   color: #fff;
 }
 
-.light ion-card-title h4{
+.light ion-card-title h4 {
   color: #222;
 }
 
-.light .profileTitle{
+.light .profileTitle {
   color: #2C284F
 }
 
-.button-native{
+.button-native {
   box-shadow: 0px 0px 10px #111;
 }
 
-.arButtonMargin{
+.arButtonMargin {
   margin: 20px 0px;
   box-shadow: 0px 0px 10px #111;
   border-radius: 10px;
 }
 
-.arNameBox{
+.arNameBox {
   margin-top: 10px;
   margin-bottom: -10px;
 }
 
-.nftHunt{
+.nftHunt {
   width: 90%;
-    height: 51px;
+  height: 51px;
 }
 
-.mapSettings{
+.mapSettings {
   position: absolute;
   z-index: 1;
   top: 70px;
@@ -175,7 +176,7 @@ ion-card-title h4{
   display: none;
 }
 
-.light .mapSettings{
+.light .mapSettings {
   background: #fff;
 }
 
@@ -190,6 +191,9 @@ ion-card-title h4{
   color: #2C284F;
 }
 
-.settingsOpen{
+.settingsOpen {
   display: block;
 }
+
+/* -------------------- Map Styling ------------------ */
+@import url("https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css");

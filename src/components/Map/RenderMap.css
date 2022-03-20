@@ -3,3 +3,39 @@
     width: 100vw;
     margin: 0;
 }
+
+.marker {
+    display: block;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.defCustomMarker {
+    height: 12px;
+    width: 12px;
+    background-color: #ac80ff;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px #111;
+}
+
+.customMapMarker {
+    display: none;
+}
+
+.customMapMarkerOpen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60vw;
+    height: 20vh;
+    padding: 10px;
+    background-color: #8442ff77;
+    box-shadow: 0px 0px 10px #111;
+    border-radius: 10px;
+}
+
+.customMapMarkerTitle {
+    display: flex;
+}
