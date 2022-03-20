@@ -1,5 +1,5 @@
 import { IonButton, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonSearchbar, IonTitle, IonToggle, IonToolbar } from '@ionic/react';
-import { sunny } from 'ionicons/icons';
+import { settings, sunny } from 'ionicons/icons';
 import { useState } from 'react';
 import RenderMap from '../components/Map/RenderMap';
 
@@ -16,12 +16,19 @@ const Map: React.FC = () => {
     alert("Updated Preferences");
   }
 
+  function showSettings() {
+    document.getElementById('settingsToggle')?.classList.toggle("settingsOpen");
+  }
+
+  
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Map</IonTitle>
         </IonToolbar>
+        <IonIcon onClick={showSettings} icon={settings} />
       </IonHeader>
       <RenderMap />
     </IonPage>

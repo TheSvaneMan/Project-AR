@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-image: linear-gradient(0deg, rgb(94, 30, 233), rgb(103, 61, 240), rgb(191, 173, 253), rgb(191, 173, 253), rgb(64, 10, 149), rgb(0, 0, 0));
+    background: #1F1B35;
 }
 
 .signUpFormInner {

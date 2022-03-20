@@ -1,4 +1,11 @@
 .postList {
     height: 60vh;
     overflow: scroll;
+    background: #1F1B35;
+}
+
+.light .postList {
+    height: 60vh;
+    overflow: scroll;
+    background: #fff;
 }
