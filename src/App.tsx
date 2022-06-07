@@ -44,6 +44,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import './theme/additional.css';
 
+/* Unity Ionic Plugin Interface */
+import UnityIonicPlugin from './components/AR/UnityIonicPlugin';
+import expressJSPingTest from './services/pingTestApi';
+
 setupIonicReact();
 
 function PrivateRoutes() {
@@ -105,9 +109,22 @@ function PublicRoutes() {
   )
 }
 
+async function PingTest() {
+  // Make web request to localhost
+  const pingTestResult = await expressJSPingTest.retrievePing();
+  console.log("Ping Test Result from Add Listener: " + pingTestResult);
+}
+
+
 export default function App() {
   const [userIsAuthenticated, setUserIsAuthenticated] = useState<any>(localStorage.getItem("userIsAuthtenticated"));
   const auth = getAuth();
+  
+  // Add Event listeners to calls in Unity
+  UnityIonicPlugin.addListener("IonicUnityEventListener", (info: any) => {
+    console.log('myPluginEvent was fired');
+    PingTest();
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, user => {

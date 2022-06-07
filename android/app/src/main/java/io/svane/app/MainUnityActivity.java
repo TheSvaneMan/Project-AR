@@ -10,7 +10,7 @@ import com.unity3d.player.UnityPlayerActivity;
 
 public class MainUnityActivity extends UnityPlayerActivity {
     private static MainUnityActivity instance;
-    String newObjectName = "Java Default name";
+    String newObjectName = "AR Java name";
     // Setup activity layout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,6 @@ public class MainUnityActivity extends UnityPlayerActivity {
         intent.putExtra("setColor", setToColor);
         startActivity(intent);
     }
-
 
     @Override public void onUnityPlayerUnloaded() {
         showMainActivity("");

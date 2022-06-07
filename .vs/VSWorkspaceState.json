@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\resources",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\AddPost",
+    "\\src\\components\\AR",
+    "\\src\\components\\Map",
+    "\\src\\components\\Profile",
+    "\\src\\pages",
+    "\\src\\services"
+  ],
+  "SelectedNode": "\\src\\components\\Profile\\PostsContainer.tsx",
+  "PreviewInSolutionExplorer": false
+}

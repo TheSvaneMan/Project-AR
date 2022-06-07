@@ -4,8 +4,18 @@ import {
     IonCardHeader,
     IonCardTitle,
     IonImg,
-    IonItem
-} from "@ionic/react"
+    IonButton
+} from "@ionic/react";
+
+import UnityIonicPlugin from '../components/AR/UnityIonicPlugin';
+
+const viewPostAR = async (objectName: any) => {
+    const { value } = await UnityIonicPlugin.startUnityFromPost({
+        value: 'Launch Unity Activity',
+    });
+    console.log('Response from native', value);
+};
+
 
 export default function PostListItem({ post }: any) {
     return (
@@ -16,6 +26,9 @@ export default function PostListItem({ post }: any) {
                     <h4>{post.title}</h4>
                 </IonCardTitle>
             </IonCardHeader>
+            <IonButton className='arButtonMargin' onClick={() => viewPostAR(post.image)}>
+                Open Post
+            </IonButton>
             <IonCardContent>{post.body}</IonCardContent>
         </IonCard>
     );
