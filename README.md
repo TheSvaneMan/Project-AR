@@ -76,8 +76,9 @@ To run on Android you have to:
     - Android 12.0
     - SDK build tools
     - NDK - v. 21.1.6352462
-- For the AR to work, you must download our pre-bundled UnityLibrary proj that has the AR features. Unity -> Android embedded Unity -> Android embedded: https://1drv.ms/u/s!AuGNE19JPuLjtZhmtC_GHxsm4YHXtQ?e=fRTEMY, Unzip and put in “C:\UnityProject”
+- For the AR to work, you must download our pre-bundled UnityLibrary proj that has the AR features. Unity -> Android embedded Unity -> Android embedded: https://1drv.ms/u/s!AuGNE19JPuLjtaR8gxfpbESOI2raQA?e=CwTcwK , Unzip and put in “C:\UnityProject”
 - Run in Android studio, if it doesn't work - Go to File, invalidate caches and rebuild project.
+- Requires an android phone with developer mode activated and connect to development environment using a USB cable to run the app on.
 ---
 // ----------------- Additional links ----------------- //
 ```
