@@ -71,23 +71,23 @@ function PrivateRoutes() {
         </Route>
       </IonRouterOutlet>
       <IonTabBar slot="bottom" color="tertiary">
-        <IonTabButton tab="artab" href="/artab">
+        <IonTabButton className='ionMenuButton' tab="artab" href="/artab">
           <IonIcon icon={camera} />
           <IonLabel>AR camera</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="collection" href="/collection">
+        <IonTabButton className='ionMenuButton' tab="collection" href="/collection">
           <IonIcon icon={images} />
           <IonLabel>Collection</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="addpost" href="/addpost">
+        <IonTabButton className='ionMenuButton' tab="addpost" href="/addpost">
           <IonIcon class='addCircle' icon={addCircle} />
           <IonLabel>Add post</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="map" href="/map">
+        <IonTabButton className='ionMenuButton' tab="map" href="/map">
           <IonIcon icon={map} />
           <IonLabel>Map</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="profile" href='/profile/posts'>
+        <IonTabButton className='ionMenuButton' tab="profile" href='/profile/posts'>
           <IonIcon icon={person} />
           <IonLabel>Profile</IonLabel>
         </IonTabButton>

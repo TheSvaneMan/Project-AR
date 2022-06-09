@@ -22,3 +22,14 @@
 .arContainer a {
   text-decoration: none;
 }
+
+.arDiv{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px 20px 20px;
+}
+
+.arImg{
+  margin-top: 20px;
+  border-radius: 4px;
+}

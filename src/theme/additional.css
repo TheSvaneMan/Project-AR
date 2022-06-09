@@ -90,7 +90,7 @@ ion-toolbar {
   background-image: linear-gradient(40deg, rgb(81, 0, 255), rgb(90, 66, 167), rgb(90, 66, 167), rgb(146, 92, 233), rgb(87, 77, 219));
   border: 2px rgb(215, 196, 255) solid;
   font-size: large;
-  margin: 30px 20px 0px 20px;
+  margin: 20px 20px 0px 20px;
   box-shadow: 0px 0px 10px #111;
 }
 
@@ -106,15 +106,9 @@ ion-toolbar {
   color: #fff;
 }
 
-.settingsContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 0px 20px;
-}
-
 .mapSwitch {
   height: 75px;
-  margin: 20px 0px -30px 0px;
+  margin: 20px 0px -20px 0px;
 }
 
 .mapButton {
@@ -180,12 +174,6 @@ ion-card-title h4 {
   background: #fff;
 }
 
-.postCard {
-  margin: 30px 0px;
-  box-shadow: 0px 0px 10px #111;
-  background-color: #2C284F;
-}
-
 .light .postCard {
   background-color: #fff;
   color: #2C284F;
@@ -194,6 +182,32 @@ ion-card-title h4 {
 .settingsOpen {
   display: block;
 }
+
+.list-md {
+padding-top: 0px;
+}
+
+.postTitle{
+  padding: 0px 20px;
+}
+
+.postBody{
+  padding: 0px 20px 15px 20px;
+}
+
+.ionMenuButton{
+  width: 70px;
+  font-size: 8pt;
+}
+
+.profileRouterOutlet{
+  overflow: scroll;
+}
+
+.profileRouterOutlet .ion-page{
+  overflow: scroll;
+}
+
 
 /* -------------------- Map Styling ------------------ */
 @import url("https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css");

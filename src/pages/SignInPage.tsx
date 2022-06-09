@@ -8,7 +8,7 @@ import {
     IonLabel,
     IonInput,
     IonButton,
-    IonImg
+    useIonToast
 } from "@ionic/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -20,6 +20,7 @@ export default function SignInPage() {
     const [password, setPassword] = useState("");
     const history = useHistory();
     const auth = getAuth();
+    const [present, dismiss] = useIonToast();
 
     function handleSubmit(event: any) {
         event.preventDefault();
@@ -30,8 +31,35 @@ export default function SignInPage() {
                 console.log(user);
             })
             .catch(error => {
+                if (error.code === "auth/user-not-found") {
+                    present({
+                        buttons: [{ text: 'hide', handler: () => dismiss() }],
+                        message: 'wrong email',
+                        duration: 3000,
+                        position: 'top',
+                    })
+                }
+                if (error.code === "auth/wrong-password") {
+                    present({
+                        buttons: [{ text: 'hide', handler: () => dismiss() }],
+                        message: 'wrong password',
+                        duration: 3000,
+                        position: 'top',
+                    })
+                }
                 console.log(error);
             });
+    }
+
+    let visited = localStorage.getItem("vistited");
+    if (visited == null) {
+        present({
+            buttons: [{ text: 'sign up', handler: () => history.replace("/signup") }],
+            message: 'Do you need an account?',
+            duration: 5000,
+            position: 'top',
+        });
+        localStorage.setItem("vistited", "true");
     }
 
     // --------- Handle OnChangeEvents ------------- //
@@ -47,7 +75,7 @@ export default function SignInPage() {
         <IonPage>
             <IonHeader>
                 <IonToolbar>
-                    <IonTitle>Sign In</IonTitle>
+                    <IonTitle>Log In</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <div className='signInContent'>
@@ -81,7 +109,7 @@ export default function SignInPage() {
                         </IonButton>
                     </div>
                     <div className="ion-text-center">
-                        <IonButton color='primary-contrast' size="small" onClick={() => history.replace("/signup")}>
+                        <IonButton color='primary-contrast' className="changeSign" size="small" onClick={() => history.replace("/signup")}>
                             Sign Up
                         </IonButton>
                     </div>

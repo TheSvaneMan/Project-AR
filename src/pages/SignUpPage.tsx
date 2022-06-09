@@ -7,7 +7,8 @@ import {
     IonItem,
     IonLabel,
     IonInput,
-    IonButton
+    IonButton,
+    useIonToast
 } from "@ionic/react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -19,6 +20,7 @@ export default function SignUpPage() {
     const [password, setPassword] = useState("");
     const history = useHistory();
     const auth = getAuth();
+    const [present, dismiss] = useIonToast();
 
     function handleSubmit(event: any) {
         event.preventDefault();
@@ -28,7 +30,39 @@ export default function SignUpPage() {
             console.log(user);
         }
         ).catch(error => {
-            console.log(error)
+            if (error.code === "auth/email-already-in-use") {
+                present({
+                    buttons: [{ text: 'hide', handler: () => dismiss() }],
+                    message: 'email already in use',
+                    duration: 3000,
+                    position: 'top',
+                })
+            }
+            if (error.code === "auth/weak-password") {
+                present({
+                    buttons: [{ text: 'hide', handler: () => dismiss() }],
+                    message: 'password should be at leat 6 characters',
+                    duration: 3000,
+                    position: 'top',
+                })
+            }
+            if (error.code === "auth/invalid-email") {
+                present({
+                    buttons: [{ text: 'hide', handler: () => dismiss() }],
+                    message: 'email is not correct',
+                    duration: 3000,
+                    position: 'top',
+                })
+            }
+            if (error.code === "auth/internal-error") {
+                present({
+                    buttons: [{ text: 'hide', handler: () => dismiss() }],
+                    message: 'password is missing',
+                    duration: 3000,
+                    position: 'top',
+                })
+            }
+            console.log(error);
         })
     }
 
@@ -80,7 +114,7 @@ export default function SignUpPage() {
                         </IonButton>
                     </div>
                     <div className="ion-text-center">
-                        <IonButton color='primary-contrast' size="small" onClick={() => history.replace("/signin")}>
+                        <IonButton color='primary-contrast' className="changeSign" size="small" onClick={() => history.replace("/signin")}>
                             Go back to sign in
                         </IonButton>
                     </div>

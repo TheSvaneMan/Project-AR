@@ -22,7 +22,7 @@ export default function PostListItem({ post }: any) {
         <IonCard className="postCard">
             <IonImg className="post-img" src={post.image} />
             <IonCardHeader>
-                <IonCardTitle>
+                <IonCardTitle className="postTitle">
                     <h4>{post.title}</h4>
                 </IonCardTitle>
             </IonCardHeader>

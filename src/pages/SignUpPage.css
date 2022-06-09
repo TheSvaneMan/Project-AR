@@ -3,7 +3,11 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: #1F1B35;
+    margin: 0px 15vw;
+}
+
+.light .signUpContent {
+    color: #1f1f1f;
 }
 
 .signUpFormInner {
@@ -11,4 +15,17 @@
     align-items: center;
     justify-items: center;
     margin-bottom: 10vh;
+}
+
+p{
+    text-align: center;
+}
+
+
+.changeSign{
+    background-color: #1f1f1f;
+}
+
+.light .changeSign{
+    background-color: var(--background);
 }

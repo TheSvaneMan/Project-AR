@@ -1,4 +1,4 @@
-import { IonItem, IonLabel, IonInput, IonTextarea, IonImg, IonButton, IonIcon } from "@ionic/react";
+import { IonItem, IonLabel, IonInput, IonTextarea, IonImg, IonButton, IonIcon, useIonToast } from "@ionic/react";
 import { useState, useEffect } from "react";
 import { Geolocation } from '@capacitor/geolocation';
 import { Camera, CameraResultType } from "@capacitor/camera";
@@ -14,6 +14,7 @@ export default function PostForm({ post, handleSubmit }: any) {
     const [location, setLocation] = useState<any>();
     const [currentLatitude, setCurrentLatitude] = useState<any>();
     const [currentLongitude, setCurrentLongitude] = useState<any>();
+    const [present, dismiss] = useIonToast();
     
 
     useEffect(() => {
@@ -26,7 +27,13 @@ export default function PostForm({ post, handleSubmit }: any) {
 
     function submitEvent(event: any) {
         event.preventDefault();
-        const formData = { title: title, body: body, image: imageFile, location: { longitude: currentLongitude, latitude: currentLatitude } };
+        let formData;
+        if (currentLatitude && currentLongitude) {
+            formData = { title: title, body: body, image: imageFile, location: { longitude: currentLongitude, latitude: currentLatitude } };
+        }
+        else {
+            formData = { title: title, body: body, image: imageFile };
+        }
         handleSubmit(formData);
     }
 
@@ -65,6 +72,13 @@ export default function PostForm({ post, handleSubmit }: any) {
         setCurrentLatitude(latitude);
         setCurrentLongitude(longitude);
         setLocation(postLocation);
+
+        present({
+            buttons: [{ text: 'hide', handler: () => dismiss() }],
+            message: 'location added',
+            duration: 3000,
+            position: 'top',
+        })
     }
 
     // --------- Handle OnChangeEvents ------------- //

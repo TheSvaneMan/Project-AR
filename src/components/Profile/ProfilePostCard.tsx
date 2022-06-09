@@ -11,7 +11,8 @@ import {
     useIonActionSheet,
     useIonModal,
     IonAvatar,
-    IonLabel
+    IonLabel,
+    IonContent
 } from "@ionic/react";
 import { ellipsisHorizontalOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
@@ -79,20 +80,19 @@ const ProfileCardItem = ({ post }: any) => {
                     </h1>
                 </IonCardTitle>
                 {
-                    post.uid == currentUserId && (
+                    post.uid === currentUserId && (
 
                         <IonButton color='tertiary' onClick={showActionSheet}>
                             <IonIcon slot="icon-only" icon={ellipsisHorizontalOutline} />
                         </IonButton>
                     )
                 } </IonCardHeader>
-
             <IonCardContent>
                 <p>{post.body}</p>
                 <hr />
                 <IonImg src={post.image} alt={post.content} className="profilePostImg" />
             </IonCardContent>
-        </IonCard>
+            </IonCard>
     )
 }
 

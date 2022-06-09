@@ -1,4 +1,4 @@
-import { IonLabel, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonHeader, IonPage, IonTitle, IonToolbar, } from '@ionic/react';
+import { IonLabel, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonHeader, IonPage, IonTitle, IonToolbar, IonContent, } from '@ionic/react';
 import { Route } from 'react-router';
 import SettingsContainer from '../components/Profile/SettingsContainer';
 import PostsContainer from '../components/Profile/PostsContainer';
@@ -8,30 +8,37 @@ const Profile = () => {
 	return (
 	
 
-			
+		
 		<IonTabs>
+
 			<IonHeader className='addPostHeader'>
 				<IonToolbar>
 					<IonTitle size="large">Create New Post</IonTitle>
 				</IonToolbar>
-			</IonHeader>
-				<IonRouterOutlet>
+				</IonHeader>
+
+
+				<IonRouterOutlet className='profileRouterOutlet'>
+				
 					<Route path='/profile/posts/' exact>
 						<PostsContainer />
 					</Route>
 					<Route path='/profile/settings' exact>
 						<SettingsContainer />
 					</Route>
+				
 				</IonRouterOutlet>
+
 				<IonTabBar className='secondaryTabBar' slot='bottom'>
 					<IonTabButton tab='posts' href='/profile/posts'>
 						<IonLabel className='profileLabel'>Posts</IonLabel>
-					</IonTabButton>
+				</IonTabButton>
 					<IonTabButton tab='settings' href='/profile/settings'>
 						<IonLabel className='profileLabel'>Settings</IonLabel>
-					</IonTabButton>
+				</IonTabButton>
 				</IonTabBar>
 			</IonTabs>
+			
 	);
 };
 

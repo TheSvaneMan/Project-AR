@@ -14,7 +14,7 @@ const ARTab: React.FC = () => {
         <IonCard className='arCard'>
           <IonCardHeader>Unity AR Application</IonCardHeader>
           <IonCardContent>
-            On this page you can add your posts in the real world by placing them in AR
+            On this page you can transition into the world of AR where you can add any of your NFT's into the real world or find other people NTF's.
           </IonCardContent>
         </IonCard>
         <ARContainer name={''} />

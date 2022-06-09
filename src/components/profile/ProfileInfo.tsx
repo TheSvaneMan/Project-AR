@@ -30,17 +30,17 @@ const ProfileInfo = ({ userInfo }: any) => {
 	}, [auth.currentUser, user]);
 
 	return (
-		<IonCard className="profileComponent">
+		<IonCard className="profileComponent h-1/3">
 			<IonCardContent className='picCard'>
 				<IonAvatar className='profilePic'>
-					<img src={image} alt="Profile Picture" className="profilePicture" />
+					<img src={image} alt="profilePic" className="profilePicture" />
 				</IonAvatar>
 			</IonCardContent>
 			<IonCardHeader className='nameCard'>
 				<IonCardTitle className="profileName">
 					{name}
 				</IonCardTitle>
-				<hr />
+
 				<IonCardSubtitle className="profileSubTitle">
 					{title}
 				</IonCardSubtitle>

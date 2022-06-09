@@ -3,7 +3,11 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: #1F1B35;
+    margin: 0px 15vw;
+}
+
+.light .signInContent {
+    color: #1f1f1f;
 }
 
 .signInFormInner {
@@ -11,4 +15,30 @@
     align-items: center;
     justify-items: center;
     margin-bottom: 10vh;
+}
+
+p{
+    text-align: center;
+}
+
+
+.changeSign{
+    background-color: var(--ion-item-background, var(--ion-background-color, #fff));
+    border-radius: var(--border-radius);
+}
+
+.light .changeSign{
+    background-color: var(--background);
+}
+
+input:-internal-autofill-selected {
+    background-color: var(--ion-item-background, var(--ion-background-color, #fff)) !important;
+
+}
+
+.loginStatus{
+    position: absolute;
+    z-index: 2;
+    transform: translate(45px, -50px);
+    color: orangered;
 }

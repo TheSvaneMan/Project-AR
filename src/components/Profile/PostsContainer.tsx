@@ -41,7 +41,6 @@ const PostsContainer = () => {
 						user: userData
 					};
 					postsArray.push(post);
-					
 				});
 				setPosts(postsArray.reverse());
 			});
@@ -52,7 +51,7 @@ const PostsContainer = () => {
 
 
 	return (
-		<IonPage>
+		<IonContent className='profilePostsContent'>
 			<IonHeader>
                     <IonToolbar>
                         <IonTitle size="large">Profile</IonTitle>
@@ -69,7 +68,7 @@ const PostsContainer = () => {
 					);
 				})}
 			</IonList>
-		</IonPage>
+		</IonContent>
 	);
 };
 

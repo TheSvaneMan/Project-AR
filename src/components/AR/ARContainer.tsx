@@ -66,20 +66,10 @@ const ARContainer: React.FC<ARContainerInterface> = ({ name }) => {
 	}
 
 	return (
-		<div className='settingsContainer'>
-			<IonButton className='arButtonMargin' onClick={testPlugin}>Test Custom Plugin</IonButton>
-			<IonButton className='arButtonMargin' onClick={openUnityThroughPlugin}>Open Unity</IonButton>
-			<IonItem className='arNameBox'>
-				<IonInput
-					value={objectName}
-					placeholder='Name your new AR Object'
-					onIonChange={(e) => setObjectName(e.detail.value!)}
-				></IonInput>
-			</IonItem>
-			<IonButton className='arButtonMargin' onClick={() => createNewObjectName(objectName)}>
-				Change Object Name in Unity
-			</IonButton>
-			<IonButton className='arButtonMargin' onClick={alertARObject}>Show Current Object name</IonButton>
+		<div className='arDiv'>
+			<img alt='ape in ar' className='arImg' src='https://i.cbc.ca/1.5907934.1612914459!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_940/saida-saetgar.jpg'/>
+			<IonButton className='arButtonMargin' onClick={openUnityThroughPlugin}>Open AR</IonButton>
+
 		</div>
 	);
 };
