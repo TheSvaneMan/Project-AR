@@ -21,7 +21,6 @@ const Collection = () => {
             usersArray.push(post);
         });
         return usersArray;
-
     }
 
     useEffect(() => {
@@ -37,7 +36,6 @@ const Collection = () => {
                         ...data,
                         user: users.find(user => user.id == data.uid)
                     };
-                    console.log(post);
                     postsArray.push(post);
                 });
                 setPosts(postsArray.reverse());
