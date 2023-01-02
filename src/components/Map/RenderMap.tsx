@@ -4,7 +4,7 @@ import { Geolocation } from '@capacitor/geolocation';
 import './RenderMap.css';
 import mapboxgl from 'mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import { useEffect, useState } from 'react';
-import { IonButton, IonContent, IonIcon, IonImg, IonItem, IonLabel, IonSearchbar, IonToggle } from '@ionic/react';
+import { IonButton, IonIcon, IonItem, IonLabel, IonSearchbar, IonToggle } from '@ionic/react';
 import { sunny } from 'ionicons/icons';
 import { get, onValue } from '@firebase/database';
 import { postsRef, usersRef } from '../../firebase-config';

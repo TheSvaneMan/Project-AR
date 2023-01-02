@@ -38,20 +38,6 @@ public class UnityIonicPlugin extends Plugin{
         // call.resolve(ret);
     }
 
-    @PluginMethod()
-    public void startUnityFromPost(PluginCall call){
-        String value = call.getString("value");
-        JSObject ret = new JSObject();
-        ret.put("value", value);
-        call.resolve(ret);
-        Intent intent = new Intent(getContext(), MainUnityActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        getActivity().startActivity(intent);
-        // JSObject ret = new JSObject();
-        // ret.put("value", value);
-        // call.resolve(ret);
-    }
-
     public UnityIonicPlugin returnUIPInstance(){
         // PluginHandle appHandle = this.get().bridge.getPlugin("UnityIonicPlugin");
         // UnityIonicPlugin UnityIonicPluginInstance = (UnityIonicPlugin) appHandle.getInstance();
@@ -84,4 +70,5 @@ public class UnityIonicPlugin extends Plugin{
         ret.put("value", "some value");
         notifyListeners("IonicUnityEventListener", ret);
     }
+
 }

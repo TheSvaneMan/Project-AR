@@ -48,6 +48,9 @@ import './theme/additional.css';
 import UnityIonicPlugin from './components/AR/UnityIonicPlugin';
 import expressJSPingTest from './services/pingTestApi';
 
+/* Local Storage */
+import { Storage } from '@ionic/storage';
+
 setupIonicReact();
 
 function PrivateRoutes() {
@@ -120,11 +123,20 @@ export default function App() {
   const [userIsAuthenticated, setUserIsAuthenticated] = useState<any>(localStorage.getItem("userIsAuthtenticated"));
   const auth = getAuth();
   
-  // Add Event listeners to calls in Unity
-  UnityIonicPlugin.addListener("IonicUnityEventListener", (info: any) => {
-    console.log('myPluginEvent was fired');
-    PingTest();
-  });
+  
+
+  // Storage API Links
+  // https://github.com/ionic-team/ionic-storage#usage-api
+
+  async function CreateStorage() {
+    const store = new Storage();
+    const storage = await store.create();
+    await storage.set('name', 'Mr. Ionitron');
+    const name = await storage.get('name');
+    console.log("Name: " + name);
+  }
+
+  CreateStorage();
 
   useEffect(() => {
     onAuthStateChanged(auth, user => {

@@ -59,51 +59,51 @@ public class MainUnityActivity extends UnityPlayerActivity {
 
     public void addControlsToUnityFrame() {
         FrameLayout layout = mUnityPlayer;
+        //{
+        //    Button myButton = new Button(this);
+        //    myButton.setText("Go Back to Main App");
+        //    myButton.setX(10);
+        //    myButton.setY(200);
+        //    myButton.setBackgroundColor(-16711936);
+        //    myButton.setOnClickListener(new View.OnClickListener() {
+        //        public void onClick(View v) {
+        //            showMainActivity("");
+        //        }
+        //    });
+        //    layout.addView(myButton, 300, 200);
+        //}
+        //{
+        //    Button myButton = new Button(this);
+        //    myButton.setText("Unload");
+        //    myButton.setX(820);
+        //    myButton.setY(200);
+
+        //    myButton.setOnClickListener(new View.OnClickListener() {
+        //        public void onClick(View v) {
+        //            mUnityPlayer.unload();
+        //       }
+        //    });
+        //    layout.addView(myButton, 300, 200);
+        //}
+
+        //{
+        //    Button myButton = new Button(this);
+        //    myButton.setText("Finish");
+        //    myButton.setX(400);
+        //    myButton.setY(200);
+        //    myButton.setBackgroundColor(-65536);
+        //    myButton.setOnClickListener(new View.OnClickListener() {
+        //        public void onClick(View v) {
+        //            finish();
+        //        }
+        //    });
+        //    layout.addView(myButton, 300, 200);
+        //}
+
+
         {
             Button myButton = new Button(this);
-            myButton.setText("Go Back to Main App");
-            myButton.setX(10);
-            myButton.setY(200);
-            myButton.setBackgroundColor(-16711936);
-            myButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    showMainActivity("");
-                }
-            });
-            layout.addView(myButton, 300, 200);
-        }
-        {
-            Button myButton = new Button(this);
-            myButton.setText("Unload");
-            myButton.setX(820);
-            myButton.setY(200);
-
-            myButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    mUnityPlayer.unload();
-                }
-            });
-            layout.addView(myButton, 300, 200);
-        }
-
-        {
-            Button myButton = new Button(this);
-            myButton.setText("Finish");
-            myButton.setX(400);
-            myButton.setY(200);
-            myButton.setBackgroundColor(-65536);
-            myButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    finish();
-                }
-            });
-            layout.addView(myButton, 300, 200);
-        }
-
-
-        {
-            Button myButton = new Button(this);
-            myButton.setText("Penda's Art :D");
+            myButton.setText("Place AR Art");
             myButton.setX(600);
             myButton.setY(1800);
             myButton.setBackgroundColor(-16776961);
@@ -114,21 +114,5 @@ public class MainUnityActivity extends UnityPlayerActivity {
             });
             layout.addView(myButton, 300, 200);
         }
-
-        {
-            Button myButton = new Button(this);
-            myButton.setText("Wiktor's Art :D");
-            myButton.setX(200);
-            myButton.setY(1800);
-            myButton.setBackgroundColor(-16776961);
-            myButton.setOnClickListener( new View.OnClickListener() {
-                public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("AR Session Origin", "ionicWiktorPrefab", "Default Name");
-                }
-            });
-            layout.addView(myButton, 300, 200);
-        }
-
-
     }
 }
