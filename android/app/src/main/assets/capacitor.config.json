@@ -1,6 +1,8 @@
 {
-	"appId": "io.svane.app",
-	"appName": "ProjectAR",
-	"webDir": "build",
-	"bundledWebRuntime": false
+	"appId": "com.projectar.alpha",
+	"appName": "Project AR",
+	"webDir": "dist",
+	"server": {
+		"androidScheme": "https"
+	}
 }
